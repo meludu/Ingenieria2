@@ -6,25 +6,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
             <li class="active">
-            	<a class="btn navbar-btn loginRegButtons" href="index.php">Home</a></li>
+            	<a href="index.php">Home</a></li>
             <li>
-                <a class="btn navbar-btn loginRegButtons" href="#">F.A.Q</a>
+                <a href="#">F.A.Q</a>
             </li>
             <li>
-                <a class="btn navbar-btn loginRegButtons" href="?op=contacto">Contacto</a>
+                <a href="?op=contacto">Contacto</a>
             </li>
-             <li>
-                             
-                            <form class="btn navbar-btn loginRegButtons"href="?op=producto" method="get">
-                            <div style=" width:250px; padding-left:3px; " >  
-
-                            <input type="text" class="busca" id="caja_busqueda" name="clave" autocomplete="off"/><br />
-
-                            </div> 
-                            <div class="btn navbar-btn loginRegButtons" id="display"></div>
-                            </form><p>
-
-                        </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
         	<?php if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") { ?>              

@@ -1,4 +1,4 @@
-
+<?php error_reporting(E_ALL ^ E_WARNING); ?>
 <div class="container">
   <div id="titleLoginSection">
     <center>
