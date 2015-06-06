@@ -1,8 +1,7 @@
 <body>
     <?php include("/../connect/conexion.php"); ?>
-
-    <?php include("/../connect/expirar.php"); ?>
     <?php session_start(); ?>
+    <?php include("/../connect/expirar.php"); ?>
     <!-- Navigation -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
