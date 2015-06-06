@@ -1,4 +1,5 @@
 <?php
+	error_reporting(E_ALL ^ E_NOTICE);
 	session_start();
 	if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") {
 		$now = time();  // $now tiene el tiempo de ahora.

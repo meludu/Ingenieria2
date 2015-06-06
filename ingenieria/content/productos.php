@@ -74,7 +74,7 @@
                             <img height="25px" width="25px" src="../content/imagen.php?id=<?php echo $_SESSION['id'] ?>">
                         <?php } ?>
                         <a href="../?op=cuenta"><i class="fa fa-sign-in"></i> Mi cuenta</a>
-                        <a href="../connect/cerrar_session.php"><i class="fa fa-sign-in"></i> Cerrar Sesi&oacute;n<?php echo $_SESSION['start']; ?></a>
+                        <a href="../connect/cerrar_session.php"><i class="fa fa-sign-in"></i> Cerrar Sesi&oacute;n</a>
                     <?php }else{ ?>
                         <a href="../?op=login"><i class="fa fa-sign-in"></i> Iniciar Sesi&oacute;n</a>
                         <a href="../?op=registro"><i class="fa fa-pencil"></i> Regitrarse</a>

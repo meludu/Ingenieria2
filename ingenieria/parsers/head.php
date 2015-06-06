@@ -33,6 +33,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <meta http-equiv="conten-type" content="text/html; charset=UTF-8" />
+    <!-- <meta http-equiv="Content-type" content="text/html; charset=utf-8" /> -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /> 
     
 </head>
