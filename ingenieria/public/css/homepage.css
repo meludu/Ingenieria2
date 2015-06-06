@@ -147,10 +147,26 @@ html[xmlns] #side {
 ======================
 */
 
+<<<<<<< HEAD
 .loginRegButtons{ 
     margin-right: 20px;
     padding: 10px;
 
+=======
+
+
+
+#log-sig {
+    margin-top: 15px;
+}
+
+#log-sig a {
+    padding: 7px;
+}
+
+#log-sig a:hover {
+    text-decoration:none;
+>>>>>>> busqueda
 }
 .slide-image {
     width: 100%;
@@ -174,16 +190,9 @@ html[xmlns] #side {
     white-space: nowrap;
 }
 
-/*PADDINGS*/
-
-.padding-left-320{
-    padding-left: 320px;
-}
-
 .paddingWithoutNav {
     padding-top: 70px;
 }
-/*END PADDINGS*/
 
 .thumbnail img {
     width: 100%;
@@ -207,3 +216,50 @@ html[xmlns] #side {
 footer {
     margin: 50px 0;
 }
+#col-sm-12{
+    background: #FFF;
+}
+#caja_busqueda /*estilos para la caja principal de busqueda*/
+{
+
+width:400px;
+height:25px;
+border:solid 2px #979DAE;
+font-size:16px;
+}
+#display /*estilos para la caja principal en donde se puestran los resultados de la busqueda en forma de lista*/
+{
+position:fixed; 
+width:400px;
+display:none;
+overflow:hidden;
+z-index:10;
+border: solid 1px #666;
+background: #FFF;
+}
+.display_box /*estilos para cada caja unitaria de cada producto que se muestra*/
+{
+padding:2px;
+padding-left:6px; 
+font-size:18px;
+height:63px;
+text-decoration:none;
+color:#3b5999; 
+}
+
+.display_box:hover /*estilos para cada caja unitaria de cada producto que se muestra. cuando el mause se pocisiona sobre el area*/
+{
+background: #7f93bc;
+color: #FFF;
+}
+.desc
+{
+color:#666;
+font-size:16;
+}
+.desc:hover
+{
+color:#FFF;
+}
+
+

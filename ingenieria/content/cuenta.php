@@ -5,6 +5,7 @@ if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") { // Para ent
   $resUser = mysqli_query($link,$queryUser);
   $tuplaUser = mysqli_fetch_array($resUser);
   ?>
+
   <div class="container">
     <div id="titleLoginSection">
       <center>

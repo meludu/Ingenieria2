@@ -20,11 +20,48 @@
     <link href='http://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet' type='text/css'>
 
     <link href="../public/css/calendar.css" rel="stylesheet">
-    
+
     <!-- scripts para el calendario-->
     <script src="../public/js/calendar.js"></script>
     <script src="../public/js/calendar-es.js"></script>
     <script src="../public/js/calendar-setup.js"></script>
+
+    <script language="JavaScript" src="../public/js/jquery.js"></script>
+    <script language="JavaScript" src="../public/js/jquery.watermarkinput.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+    $(".busca").keyup(function() //se crea la funcioin keyup
+    {
+    var texto = $(this).val();//se recupera el valor de la caja de texto y se guarda en la variable texto
+    var dataString = 'palabra='+ texto;//se guarda en una variable nueva para posteriormente pasarla a search.php
+    if(texto=='')//si no tiene ningun valor la caja de texto no realiza ninguna accion y deja de mostrar lo que se buscó.
+    {
+         $("#display").hide(); 
+    }
+    else
+    {
+    $.ajax({//metodo ajax
+    type: "POST",//aqui puede  ser get o post
+    url: "search.php",//la url adonde se va a mandar la cadena a buscar
+    data: dataString,
+    cache:false,
+    success: function(html)//funcion que se activa al recibir un dato
+    {
+    $("#display").html(html).show();// funcion jquery que muestra el div con identificador display, como formato html, tambien puede ser .text
+    //$("#display").prepend($(html).fadeIn(1200)); 
+    }
+    });
+    }return false;    
+    });
+    });
+    jQuery(function($){//funcion jquery que muestra el mensaje "Buscar producto.." en la caja de texto
+       $("#caja_busqueda").Watermark("Buscar producto..");
+       });
+    </script>
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -38,7 +75,9 @@
 <body>
     <?php include("/../connect/conexion.php"); ?>
     <?php session_start(); ?>
+
     <?php include("/../connect/expirar.php"); ?>
+    <?php include("/../connect/clase_conexion.php"); ?>
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="row">
@@ -65,6 +104,19 @@
                         <li>
                             <a href="?op=contacto">Contacto</a>
                         </li>
+                         <li>
+                             
+                            <form href="?op=producto" method="get">
+                            <div style=" width:250px; padding-left:3px; " >  
+
+                            <input type="text" class="busca" id="caja_busqueda" name="clave" autocomplete="off"/><br />
+
+                            </div> 
+                            <div id="display"></div>
+                            </form><p>
+
+                        </li>
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container -->
