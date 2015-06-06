@@ -15,14 +15,10 @@
 			$_SESSION['tipo'] = $dato['tipo'];
 			$_SESSION['nombre_user'] = $dato['nombre'];
 			$_SESSION['start'] = time();
+			$_SESSION['expire'] = $_SESSION['start'] + (20 * 60);   // Expira en 20 minuto. 
 			$_SESSION['tieneFoto'] = false;
 			if (!empty($dato['tipoImagen'])) {
 				$_SESSION['tieneFoto'] = true;
 			}
-			echo $_SESSION['tipo'];
-			header("Location: ../index.php");
-		}else{  // Datos incorrectos.
-			echo "El e-mail o el password son incorrectos. ". $c." cantidad de tuplas" ;
-		}
-	}
+
 ?>
