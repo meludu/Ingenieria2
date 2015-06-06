@@ -1,7 +1,12 @@
 <?php
 	include("conexion.php");
 	if (empty($_POST['correo']) || empty($_POST['clave'])) {
-		echo "vacias";
+		?>
+		<script type='text/javascript'>
+		  alert("Error en el logueo");
+		  window.location='../index.php?op=login';
+		</script>
+	<?php
 	}else{ // Ambos campos tienen informacion.
 		$query = "SELECT * FROM usuarios WHERE email = '".$_POST['correo']."' AND password = '".$_POST['clave']."' ";
 		$res = mysqli_query($link,$query);
@@ -20,5 +25,16 @@
 			if (!empty($dato['tipoImagen'])) {
 				$_SESSION['tieneFoto'] = true;
 			}
-
+			echo $_SESSION['tipo'];
+			header("Location: ../index.php");
+		}else{  // Datos incorrectos.
+		?>
+		<script type='text/javascript'>
+		  alert("Error en el logueo");
+		  window.location='../index.php?op=login';
+		</script>
+		<?php
+		}
+	}
+	mysqli_close($link);
 ?>

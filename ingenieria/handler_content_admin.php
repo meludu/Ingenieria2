@@ -5,9 +5,9 @@
 		case 'categorias':
 			$content = '/../../content/admin/categorias.php';
 			break;
-		case 'subcategorias':
+		/*case 'subcategorias':
 			$content = '/../../content/admin/subcategorias.php';
-			break;
+			break;*/
 		default:
 			$content = '/../../content/admin/categorias.php';
 			break;
