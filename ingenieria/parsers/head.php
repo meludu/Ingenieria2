@@ -21,6 +21,7 @@
 
     <link href="public/css/calendar.css" rel="stylesheet">
     
+    <link rel="stylesheet" href="public/css/parsley.css">    
     <!-- scripts para el calendario-->
     <script src="public/js/calendar.js"></script>
     <script src="public/js/calendar-es.js"></script>
