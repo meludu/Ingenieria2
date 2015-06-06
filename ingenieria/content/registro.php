@@ -33,6 +33,8 @@
   }
   
 ?>
+<ol class="breadcrumb">
+</ol>
 <div class="container">
   <div id="titleRegSection">
     <center>

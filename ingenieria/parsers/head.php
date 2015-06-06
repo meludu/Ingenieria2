@@ -25,6 +25,42 @@
     <script src="public/js/calendar.js"></script>
     <script src="public/js/calendar-es.js"></script>
     <script src="public/js/calendar-setup.js"></script>
+
+      <script language="JavaScript" src="public/js/jquery.js"></script>
+    <script language="JavaScript" src="public/js/jquery.watermarkinput.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+    $(".busca").keyup(function() //se crea la funcioin keyup
+    {
+    var texto = $(this).val();//se recupera el valor de la caja de texto y se guarda en la variable texto
+    var dataString = 'palabra='+ texto;//se guarda en una variable nueva para posteriormente pasarla a search.php
+    if(texto=='')//si no tiene ningun valor la caja de texto no realiza ninguna accion y deja de mostrar lo que se buscó.
+    {
+         $("#display").hide(); 
+    }
+    else
+    {
+    $.ajax({//metodo ajax
+    type: "POST",//aqui puede  ser get o post
+    url: "parsers/search.php",//la url adonde se va a mandar la cadena a buscar
+    data: dataString,
+    cache:false,
+    success: function(html)//funcion que se activa al recibir un dato
+    {
+    $("#display").html(html).show();// funcion jquery que muestra el div con identificador display, como formato html, tambien puede ser .text
+    //$("#display").prepend($(html).fadeIn(1200)); 
+    }
+    });
+    }return false;    
+    });
+    });
+    jQuery(function($){//funcion jquery que muestra el mensaje "Buscar producto.." en la caja de texto
+       $("#caja_busqueda").Watermark("Buscar producto..");
+       });
+    </script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

@@ -10,18 +10,8 @@
                 <!--<div class="list-group"> -->
                 <ul id="side">
                     <?php
-                        while ($tupla = mysqli_fetch_array($res)) { 
-                            $query2 = "SELECT sc.idSubCategoria AS idsub, sc.nombre AS nomsub FROM categorias c INNER JOIN subcategorias sc ON(c.idCategoria = sc.idCategoria) WHERE sc.idCategoria = '".$tupla['idCategoria']."' ORDER BY sc.nombre ";  // Consulta de las subcategorias.
-                            $res2 = mysqli_query($link,$query2) ?>
-                            <li><a href="#"><?php echo $tupla["nombre_cat"]; ?></a>
-                                <ul>
-                                    <?php
-                                    while ($tupla2 = mysqli_fetch_array($res2)) { ?>
-                                        <li><a href=""><?php echo $tupla2['nomsub']; ?></a></li>
-                                    <?php
-                                    } ?>
-                                </ul>
-                            </li>
+                    while ($tupla = mysqli_fetch_array($res)) { ?>
+                            <li><a href="content/productos.php?idC=<?php echo $tupla['idCategoria']; ?>"><?php echo $tupla["nombre_cat"]; ?></a></li>
                     <?php  
                         } 
                     ?>

@@ -1,6 +1,4 @@
 <ol class="breadcrumb">
-  <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
-  <li class="active">Inicio de sesi&oacute;n</li>
 </ol>
 <div class="container">
   <div id="titleLoginSection">
