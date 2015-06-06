@@ -8,7 +8,7 @@ $cantidadUser = mysqli_num_rows($resultadoUser);
 if ($cantidadUser == 0) {
   $fechaMod = date('Y-m-d',strtotime($_POST['fechaNacimiento']));
   $tipoUser = "usuario";
-  $queryAlta = "INSERT INTO usuarios (tipo, nombre, apellido, sexo, fecha_nac, email, password, imagen, tipoImagen) VALUES ( '".utf8_encode($tipoUser)."', '".utf8_encode($_POST['nombre'])."', '".utf8_encode($_POST['apellido'])."', '".$_POST['sexo']."', '".$fechaMod."', '".$_POST['email_1']."', '".$_POST['clave_1']."', '".null."', '".null."') ";
+  $queryAlta = "INSERT INTO usuarios (tipo, nombre, apellido, sexo, fecha_nac, email, password, imagen, tipoImagen) VALUES ( '".$tipoUser."', '".$_POST['nombre']."', '".$_POST['apellido']."', '".$_POST['sexo']."', '".$fechaMod."', '".$_POST['email_1']."', '".$_POST['clave_1']."', '".null."', '".null."') ";
   mysqli_query($link,$queryAlta);
 ?>
 <script type='text/javascript'>

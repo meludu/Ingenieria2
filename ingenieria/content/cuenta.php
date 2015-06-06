@@ -5,7 +5,6 @@ if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") { // Para ent
   $resUser = mysqli_query($link,$queryUser);
   $tuplaUser = mysqli_fetch_array($resUser);
   ?>
-
   <div class="container">
     <div id="titleLoginSection">
       <center>
@@ -25,13 +24,13 @@ if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") { // Para ent
         <div class="form-group">
           <label for="inputUserName" class="col-md-4 control-label"><i class="fa fa-pencil fa-2x"></i></label>
           <div class="col-md-4">
-            <input type="text" value="<?php echo ($tuplaUser['nombre']); ?>" name="nombre" class="form-control" id="input-userName" placeholder="Nombre...">
+            <input type="text" value="<?php echo utf8_decode($tuplaUser['nombre']); ?>" name="nombre" class="form-control" id="input-userName" placeholder="Nombre...">
           </div> <!-- End Form-->
         </div> <!-- End Form-->
         <div class="form-group">
           <label for="inputUserName" class="col-md-4 control-label"><i class="fa fa-pencil fa-2x"></i></label>
           <div class="col-md-4">
-            <input type="text" name="apellido" value="<?php echo ($tuplaUser['apellido']); ?>" class="form-control" id="input-userName" placeholder="Apellido...">
+            <input type="text" name="apellido" value="<?php echo utf8_decode($tuplaUser['apellido']); ?>" class="form-control" id="input-userName" placeholder="Apellido...">
           </div> <!-- End Form-->
         </div> <!-- End Form-->
 

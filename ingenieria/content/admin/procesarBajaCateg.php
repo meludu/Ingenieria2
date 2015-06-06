@@ -9,7 +9,7 @@ if (isset($_GET["idCategoria"])){
 include("/../../connect/conexion.php");
 
 //veo si esta en uso o no la categoría a dar de baja
-$consul=" SELECT idCategoria FROM productos WHERE idCategoria='$idCateg'";
+$consul=" SELECT idSubCategoria FROM subcategorias WHERE idCategoria='$idCateg'";
 $res = mysqli_query($link, $consul);
 
 if($fila = mysqli_fetch_array($res)){
