@@ -1,8 +1,17 @@
 
 body {
-    background-image: url('../patterns/paper_fibers.png');
+    background: #f2f4f4;
     font-family: 'Amaranth', sans-serif;
      /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+
+@font-face
+{
+    font-family: "Prototype";
+    src: 
+        url("../fonts/prototype/Prototype.ttf") format("truetype");
+                
 }
 
 /*---Calendario en registración--- */
@@ -29,121 +38,90 @@ body {
 =====================
 */
 
-#side {
-    background: #7D7D7D;
-    border-radius: 2em 2em 2em 2em;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-    line-height: 100%;
-    margin: 0;
-    padding: 7px 6px 0;
-    z-index: 2;
-    position: absolute;
+#side
+{
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size:1em;
+    text-align: center;
 }
-#side li {
-    float: bottom;
-    list-style: none outside none;
-    margin: 0 5px;
-    padding: 0 0 8px;
-    position: relative;
+
+#side ul
+{
+   background-color: #932828;
+   border-bottom-left-radius: 0.5em;
+   border-bottom-right-radius: 0.5em;
+   box-shadow: 5px 5px 5px #888888;
+   color: #932828;
+   list-style: none;
+   margin: 0;
+   padding-left: 0;
 }
-#side a {
-    border-radius: 1.6em 1.6em 1.6em 1.6em;
-    color: #E7E5E5;
-    display: block;
-    font-weight: bold;
-    margin: 0;
-    padding: 8px 20px;
-    text-decoration: none;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-}
-#side a:hover {
-    background: none repeat scroll 0 0 #000000;
-    color: #FFFFFF;
-}
-#side .current a, #side li:hover > a {
-    background: #DDDDDD;
-    border-top: 1px solid #F8F8F8;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    color: #444444;
-    text-shadow: 0 1px 0 #FFFFFF;
-}
-#side ul li:hover a, #side li:hover li a {
-    background: none repeat scroll 0 0 transparent;
-    border: medium none;
-    box-shadow: none;
-    color: #666666;
-}
-#side ul a:hover {
-    background: #0078FF;
-    border-radius: 0 0 0 0;
-    color: #000 ;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-}
-#side li:hover > ul {
-    display: block;
-}
-#side ul {
-    background: #DDDDDD;
-    border: 1px solid #B4B4B4;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    display: none;
-    left: 0;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 35px;
-    width: 185px;
-}
+
 #side ul li {
-    float: none;
-    margin: 0;
+    display: block;
+    list-style: none;
+}
+#side ul li a 
+{
+    font-family: 'Prototype';
+    font-size: 1.1em; 
+    padding: 1.2em;
+    display: block;
+    color: #FFE7E7;
+    text-decoration: none; 
+}
+
+#side ul li a:hover
+{
+    opacity:0.7;
+    filter:alpha(opacity=70); /* For IE8 and earlier */
+    background-color: #f3f6f6;
+    color: #080000;
+}
+
+.box-shadow-5 {
+     box-shadow: 5px 5px 5px #888888;
+}
+
+.panel {
+    border: none;
+}
+
+.panel-body {
     padding: 0;
-}
-
-#side ul a {
-    font-weight: normal;
-    text-shadow: 0 1px 0 #FFFFFF;
-}
-#side ul ul {
-    left: 180px;
-    top: 0px;
-}
-
-#side ul {
-    top: -10px;
-    left: 110px;
-}
-
-#side ul li:first-child > a {
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-}
-#side ul li:last-child > a {
-    border-bottom-left-radius: 9px;
-    border-bottom-right-radius: 9px;
-}
-
-#side:after {
-    clear: both;
-    content: ".";
-    display: block;
-    height: 0;
-    line-height: 0;
-    visibility: hidden;
-}
-#side {
-    display: inline-block;
-}
-html[xmlns] #side {
-    display: block;
-}
-* html #side {
-    height: 1%;
 }
 /*
 ======================
 =====FIN DE MENU======
+======================
+*/
+
+/*
+======================
+=======NAVBAR=========
+======================
+*/
+.navbar-collapse{
+    background-color: #787878;
+    box-shadow: 3px 3px 3px #888888;    
+    /*box-shadow: inset 0 -2px #932828;*/
+}
+.navbar-collapse a{
+    color: #f2f3f3;
+}
+
+.navbar-collapse a:hover{
+    color: #932828;
+}
+
+
+/*
+======================
+=======NAVBAR=========
 ======================
 */
 
@@ -181,7 +159,7 @@ html[xmlns] #side {
 }
 
 .paddingWithoutNav {
-    padding-top: 70px;
+    padding-top: 30px;
 }
 /*END PADDINGS*/
 
@@ -253,4 +231,12 @@ font-size:16;
 color:#FFF;
 }
 
+.orderSpan {
+    padding-right: 20px;
+    display: inline-block;
+}
 
+
+.linkOrder {
+    padding: 10px;
+}

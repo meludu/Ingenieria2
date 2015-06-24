@@ -3,13 +3,10 @@
 	$site = $_GET['siteMap'];
 	switch ($site) {
 		case 'categorias':
-			$content = '/../../content/admin/categorias.php';
+			$content = '/../content/categorias.php';
 			break;
-		/*case 'subcategorias':
-			$content = '/../../content/admin/subcategorias.php';
-			break;*/
 		default:
-			$content = '/../../content/admin/categorias.php';
+			$content = '/../content/categorias.php';
 			break;
 	}	
 ?>

@@ -13,11 +13,8 @@
                 <li>
                     <a href="?siteMap=categorias"><i class="fa fa-table"></i> Categorias</a>
                 </li>
-                <!-- <li>
-                    <a href="?siteMap=subcategorias"><i class="fa fa-table"></i> SubCategorias</a>
-                </li> -->
                 <li>
-                    <a href="../../index.php"><i class="fa fa-home"></i> Home</a>
+                    <a href="../index.php"><i class="fa fa-home"></i> Home</a>
                 </li>
             </ul>
         </div>

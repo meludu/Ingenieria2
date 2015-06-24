@@ -1,4 +1,5 @@
 <?php
+
 	if (!isset($_GET['op'])){
 		$content = 'content/home.php';
 	}
