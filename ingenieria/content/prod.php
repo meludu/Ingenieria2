@@ -1,5 +1,4 @@
 <?php
-    error_reporting(E_ALL ^ E_WARNING ^ E_NOTICE);
     $query = "SELECT * FROM categorias ORDER BY nombre_cat";   // Consulta de las categorias
     $res = mysqli_query($link,$query);
 ?>
@@ -58,8 +57,8 @@
                             <img style="max-width: 320px; max-height: 150px;" src="content/imagen_portada.php?idPro=<?php echo $tuplaPro['idProducto']; ?>" >
                             <div class="caption">
                                 <h4 class="pull-right"></h4>
-                                <h4><a class="sar" href="?op=publicacion&idP=<?php echo $tuplaPro['idProducto']; ?>"><?php echo $tuplaPro['nombre']; ?></a></h4>
-                                <p class="descrip"><?php echo $tuplaPro['descripcionCorta']; ?></p>
+                                <h4><a href="?op=publicacion&idP=<?php echo $tuplaPro['idProducto']; ?>"><?php echo $tuplaPro['nombre']; ?></a></h4>
+                                <p><?php echo $tuplaPro['descripcionCorta']; ?></p>
                             </div>
                             <div class="ratings">
                                 <p class="pull-right"><?php echo $tuplaPro['visitas']." "; ?><i class="fa fa-eye"></i></p>
@@ -70,9 +69,7 @@
                     <!-- Finaliza el primer producto -->
                     <?php } 
                     }else{ ?>
-                        <b>La categotia no existe o en esta categoria no hay ningun producto</b></p>
-                        <a class="enlace"href="index.php">Volver al inicio</a>
-                        <!-- <script type="text/javascript">window.location='index.php'</script>-->
+                        <h3><p>Todavia no existen productos que se subasten para esta categoria. </p></h3>
                     <?php } ?>
                 </div>
     </div>

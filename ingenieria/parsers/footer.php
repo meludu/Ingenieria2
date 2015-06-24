@@ -1,5 +1,5 @@
 <div class="container">
-        <hr class="originf">
+        <hr>
         <!-- Footer -->
         <footer>
             <div class="row">

@@ -63,9 +63,27 @@
     });
     });
     jQuery(function($){//funcion jquery que muestra el mensaje "Buscar producto.." en la caja de texto
-       $("#caja_busqueda").Watermark("");
+       $("#caja_busqueda").Watermark("Buscar producto..");
        });
     </script>
+
+    <!-- Script para div escondido en las notificaciones -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#boton").click(function () {    
+                $('#target').toggle("slow");
+            });
+        });
+    </script>
+
+    <!-- PARA RESPONDER LAS PREGUNTAS. () -->
+    <!--<script type="text/javascript">
+        $(document).ready(function(){
+             $(".boton").click(function () {    
+                $('.target').toggle("slow");
+            });
+        });
+    </script> -->
 
     <meta http-equiv="conten-type" content="text/html; charset=UTF-8" />
     

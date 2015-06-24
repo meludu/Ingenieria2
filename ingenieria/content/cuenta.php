@@ -24,20 +24,20 @@ if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") { // Para ent
         <div class="form-group">
           <label for="inputUserName" class="col-md-4 control-label"><i class="fa fa-pencil fa-2x"></i></label>
           <div class="col-md-4">
-            <input type="text" value="<?php echo ($tuplaUser['nombre']); ?>" name="nombre" class="form-control" id="input-userName" placeholder="Nombre...">
+            <input type="text" value="<?php echo ($tuplaUser['nombre']); ?>" name="nombre" class="form-control" id="input-userName" placeholder="Nombre..." required>
           </div> <!-- End Form-->
         </div> <!-- End Form-->
         <div class="form-group">
           <label for="inputUserName" class="col-md-4 control-label"><i class="fa fa-pencil fa-2x"></i></label>
           <div class="col-md-4">
-            <input type="text" name="apellido" value="<?php echo ($tuplaUser['apellido']); ?>" class="form-control" id="input-userName" placeholder="Apellido...">
+            <input type="text" name="apellido" value="<?php echo ($tuplaUser['apellido']); ?>" class="form-control" id="input-userName" placeholder="Apellido..." required>
           </div> <!-- End Form-->
         </div> <!-- End Form-->
 
         <div class="form-group">
           <label for="exampleInputFile" class="col-md-4 control-label"><i class="fa fa-camera fa-2x"></i></label>
             <div class="col-md-4">
-              <input name="avatar" type="file" id="exampleInputFile" class="file-control" >
+              <input name="avatar" type="file" id="exampleInputFile" class="file-control" required>
               <p class="help-block">Subir foto.</p>
             </div>
         </div>

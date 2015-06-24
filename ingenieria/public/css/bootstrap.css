@@ -2559,7 +2559,7 @@ output {
   -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
           transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-}
+} 
 .form-control:focus {
   border-color: #66afe9;
   outline: 0;
@@ -2588,7 +2588,7 @@ fieldset[disabled] .form-control {
 }
 textarea.form-control {
   height: auto;
-}
+} 
 input[type="search"] {
   -webkit-appearance: none;
 }
@@ -4080,7 +4080,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar-header {
     float: left;
-
   }
 }
 .navbar-collapse {
@@ -4353,7 +4352,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-top: 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-
 }
 .navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
   margin-bottom: 0;
@@ -4361,22 +4359,18 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-
 }
 .navbar-btn {
   margin-top: 8px;
   margin-bottom: 8px;
-
 }
 .navbar-btn.btn-sm {
   margin-top: 10px;
   margin-bottom: 10px;
-
 }
 .navbar-btn.btn-xs {
   margin-top: 14px;
   margin-bottom: 14px;
-
 }
 .navbar-text {
   margin-top: 15px;
@@ -4387,7 +4381,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     float: left;
     margin-right: 15px;
     margin-left: 15px;
-
   }
 }
 @media (min-width: 768px) {
@@ -4416,7 +4409,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-text {
   color: #777;
-  
 }
 .navbar-default .navbar-nav > li > a {
   color: #777;
@@ -6229,7 +6221,7 @@ button.close {
   position: absolute;
   bottom: 10px;
   left: 50%;
-  z-index: 15;
+  z-index: 15; 
   width: 60%;
   padding-left: 0;
   margin-left: -30%;
@@ -6589,4 +6581,4 @@ button.close {
     display: none !important;
   }
 }
-
+/*# sourceMappingURL=bootstrap.css.map */
