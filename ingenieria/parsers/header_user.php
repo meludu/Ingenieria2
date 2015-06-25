@@ -55,7 +55,7 @@
                           <ul class="dropdown-menu" role="menu">
                           	<li><a href="?op=cuenta">Editar perfil</a></li>
                              <?php if ($_SESSION['tipo'] == "admin") {?>
-                            <li><a href="content/admin/administrar.php">Administrar</a></li> 
+                            <li><a href="content/administrar.php">Administrar</a></li> 
                              <?php } ?>          
                             <li class="divider"></li>
                             <li><a href="connect/cerrar_session.php">Cerrar Sesi&oacute;n</a></li>
