@@ -1,6 +1,7 @@
 <?php
 include("/../connect/clase_conexion.php");
 
+
 if($_POST)
 {
 
@@ -8,9 +9,9 @@ $q=$_POST['palabra'];//se recibe la cadena que queremos buscar
 
 $sql_res=mysql_query("select * from productos where nombre like '%$q%' or descripcionCorta like'%$q%' order by visitas DESC limit 4",$c);
 
-
- $cantidadDePro = mysql_num_rows($sql_res);
+$cantidadDePro = mysql_num_rows($sql_res);
 if($cantidadDePro>0){
+
 
 while($row=mysql_fetch_array($sql_res))
 {
@@ -29,11 +30,8 @@ $descrip=$row['descripcionCorta'];
 <div style="margin-right:6px; font-size:14px;" class="desc"><?php echo $descrip; ?></div></div>
 </a>
 
-
 <?php
 }
-
-
 
 ?>	
 
@@ -49,12 +47,5 @@ else{
 <?php
 }
 }
-else
-{
-	?>
-
-<?php
-}
-
 
 ?>

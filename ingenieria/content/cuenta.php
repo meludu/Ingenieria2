@@ -24,13 +24,13 @@ if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") { // Para ent
         <div class="form-group">
           <label for="inputUserName" class="col-md-4 control-label"><i class="fa fa-pencil fa-2x"></i></label>
           <div class="col-md-4">
-            <input type="text" value="<?php echo ($tuplaUser['nombre']); ?>" name="nombre" class="form-control" id="input-userName" placeholder="Nombre...">
+            <input type="text" value="<?php echo utf8_encode($tuplaUser['nombre']); ?>" name="nombre" class="form-control" id="input-userName" placeholder="Nombre...">
           </div> <!-- End Form-->
         </div> <!-- End Form-->
         <div class="form-group">
           <label for="inputUserName" class="col-md-4 control-label"><i class="fa fa-pencil fa-2x"></i></label>
           <div class="col-md-4">
-            <input type="text" name="apellido" value="<?php echo ($tuplaUser['apellido']); ?>" class="form-control" id="input-userName" placeholder="Apellido...">
+            <input type="text" name="apellido" value="<?php echo utf8_encode($tuplaUser['apellido']); ?>" class="form-control" id="input-userName" placeholder="Apellido...">
           </div> <!-- End Form-->
         </div> <!-- End Form-->
 
@@ -49,4 +49,14 @@ if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") { // Para ent
         </div> <!-- End Div-->
       </form><!-- End Form-->
   </div>
-<?php } ?>
+<?php 
+}
+else{
+?>
+  <div class="alert alert-danger" role="alert">
+    <strong>Error!</strong>, debe estar logueado para acceder a esta p&aacute;gina. 
+    <a href="index.php?op=login" class="alert-link">Ir a login de la pagina</a>.
+  </div>
+<?php 
+}
+?>

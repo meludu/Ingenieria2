@@ -1,5 +1,6 @@
 <?php
     error_reporting(E_ALL ^ E_WARNING ^ E_NOTICE);
+
     $query = "SELECT * FROM categorias ORDER BY nombre_cat";   // Consulta de las categorias
     $res = mysqli_query($link,$query);
 ?>

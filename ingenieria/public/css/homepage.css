@@ -154,9 +154,15 @@ html[xmlns] #side {
 * html #side {
     height: 1%;
 }
+
 /*
 ======================
 =====FIN DE MENU======
+======================
+*/
+/*
+======================
+=======NAVBAR=========
 ======================
 */
 
@@ -167,22 +173,16 @@ html[xmlns] #side {
 }
 
 .slide-image {
-   width: 100%;
-
+    width: 100%;
 }
-
 
 .carousel-holder {
     margin-bottom: 30px;
-
-
 }
 
 .carousel-control,
 .item {
-
     border-radius: 4px;
-
 }
 
 .caption {
@@ -207,8 +207,6 @@ html[xmlns] #side {
 
 .thumbnail img {
     width: 100%;
-
-
 }
 
 .ratings {
@@ -233,7 +231,6 @@ footer {
 }
 .navbar{
     background: #000;
-
 }
 #caja_busqueda /*estilos para la caja principal de busqueda*/
 {
@@ -243,6 +240,7 @@ height:35px;
 border:solid 2px #979DAE;
 font-size:16px;
 }
+
 #display /*estilos para la caja principal en donde se puestran los resultados de la busqueda en forma de lista*/
 {
 border-radius: 10px 10px 10px 10px;
@@ -255,6 +253,7 @@ background: #777777;
 border-color: #8A0808;
 
 }
+
 .display_box /*estilos para cada caja unitaria de cada producto que se muestra*/
 {
 border-radius: 10px 10px 10px 10px;
@@ -265,8 +264,6 @@ font-size:18px;
 height:63px;
 text-decoration:none;
 color:#3b5999; 
-
-
 }
 
 .display_box:hover /*estilos para cada caja unitaria de cada producto que se muestra. cuando el mouse se pocisiona sobre el area*/
@@ -274,15 +271,18 @@ color:#3b5999;
 background: #444444;
 color: #FFF;
 }
+
 .titul{
     color:#8A0808;
     /*text-shadow: -1px 0 white ,0 1px white, 1px 0 white, 0 -1px white;*/
 }
+
 .desc
 {
 color:#111;
 font-size:16;
 }
+
 .desc:hover
 {
 color:#FFF;
@@ -291,10 +291,10 @@ color:#FFF;
  .navbar-collapse{
     background-color: #111112;
     /*background-image: url('../img/fondos-de-pantalla-fondo-negro-hd-widescreen-gratis-imagenes.jpg');*/
-   box-shadow: 2px 5px 2px #8A0808;
-
+    box-shadow: 2px 5px 2px #8A0808;
 
  }
+
  .navbar-btn{
     color: white;
     border-radius: 15px 70px  15px;
@@ -383,4 +383,14 @@ a.enlace{
 .form-control,.well{
     border-color: #8A0808;
 
+}
+
+/*hecho por mi*/
+.orderSpan {
+    padding-right: 20px;
+    display: inline-block;
+}
+
+.linkOrder {
+    padding: 10px;
 }

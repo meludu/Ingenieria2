@@ -71,13 +71,13 @@
     <div class="form-group">
       <label for="inputPass" class="col-md-4 control-label">Password: </label>
       <div class="col-md-5">
-        <input type="password" data-parsley-minlength="8" name="clave_1" class="form-control" id="inputPass" placeholder="Su contrase&ntilde;a">
+        <input type="password" data-parsley-minlength="8" name="clave_1" class="form-control" id="inputPass" data-parsley-trigger="change" placeholder="Su contrase&ntilde;a">
       </div> <!-- End Form-->
     </div> <!-- End Form-->
     <div class="form-group">
       <label for="inputPassAgain" class="col-md-4 control-label">Repetir Password: </label>
       <div class="col-md-5">
-        <input type="password" data-parsley-minlength="8" data-parsley-equalto="#inputPass" name="clave_1" class="form-control" id="inputPassAgain" placeholder="Su contrase&ntilde;a nuevamente">
+        <input type="password" data-parsley-minlength="8" data-parsley-equalto="#inputPass" data-parsley-trigger="change" name="clave_1" class="form-control" id="inputPassAgain" placeholder="Su contrase&ntilde;a nuevamente">
       </div> <!-- End Form-->
     </div> <!-- End Form-->
     <!-- regular select input. Nothing more to add. -->
@@ -88,5 +88,5 @@
       </div>
     </div>
   </form>
-</div>
+
 </div>

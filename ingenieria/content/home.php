@@ -1,4 +1,16 @@
     <?php
+    include_once("/../parsers/head.php");
+    include_once("/../helpers/chequear_url.php");
+
+    if(urlExist("http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'])){
+        ?>
+        <div class="alert alert-danger" role="alert">
+            <strong>Error!</strong>, <a href="../index.php" class="alert-link">ir al index</a>.
+        </div>
+    <?php
+    }
+    else
+    {
     $query = "SELECT * FROM categorias ORDER BY nombre_cat";   // Consulta de las categorias
     $res = mysqli_query($link,$query);
     
@@ -41,7 +53,7 @@
             $baseurl = "index.php?";
             $queryPro = "SELECT idProducto, nombre, descripcionCorta, visitas, fecha_fin FROM productos ORDER BY $orden $tipoOrden";
         }
-                            
+                        
     ?>
     <!-- Page Content -->
     <div class="container paddingWithoutNav">
@@ -65,7 +77,6 @@
                 if(!isset($_GET['clave'])){
                                                
                 ?>
-           
                 <div class="row carousel-holder">
                     <div class="col-md-12">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -75,7 +86,6 @@
                                 <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner">
-                                
                                 <div class="item active">
                                     <img class="slide-image" src="http://placehold.it/800x300" alt="">
                                 </div>
@@ -97,13 +107,15 @@
                  <?php
                      }
                     ?>
-                <div style="float:right">
-                    <i class="fa fa-calendar"></i> <a href="<?php echo $baseurl . "orden1=DESC"; ?>" title="Lo que no esta por terminar"><i class="fa fa-arrow-up"></i></a> <a href="<?php echo $baseurl . "orden2=ASC"; ?>" title="Lo que esta por terminar"><i class="fa fa-arrow-down"></i></a>
-                    <i class="fa fa-eye"></i> <a href="<?php echo $baseurl . "orden3=DESC"; ?>" title="Lo mas vistos"><i class="fa fa-arrow-up"></i></a> <a href="<?php echo $baseurl . "orden4=ASC"; ?>" title="Lo menos visto"><i class="fa fa-arrow-down"></i></a>
+                <div class="row" style="margin-bottom: 10px;">
+                     <div class="col-md-8 col-md-offset-5">
+                        <div>
+                            <span class="orderSpan"><i class="fa fa-calendar" style="margin-right:5px;"></i> <a class="btn btn-default linkOrder" href="<?php echo $baseurl . "orden1=DESC"; ?>" title="Lo que no esta por terminar"><i class="fa fa-sort-amount-asc"></i></a> <a class="btn btn-default linkOrder" href="<?php echo $baseurl . "orden2=ASC"; ?>" title="Lo que esta por terminar"><i class="fa fa-sort-amount-desc"></i></a></span>
+                            <span><i class="fa fa-arrow-left" style="margin-right:5px;"></i>Ordenar<i class="fa fa-arrow-right" style="margin-left:5px;"></i></span>
+                            <span class="orderSpan"></span><i class="fa fa-eye" style="margin-right:5px;"></i> <a class="btn btn-default linkOrder" href="<?php echo $baseurl . "orden3=DESC"; ?>" title="Lo mas vistos"><i class="fa fa-sort-amount-asc"></i></a> <a class="btn btn-default linkOrder" href="<?php echo $baseurl . "orden4=ASC"; ?>" title="Lo menos visto"><i class="fa fa-sort-amount-desc"></i></i></a></span>    
+                        </div>
+                     </div>           
                 </div>
-                <div style="clear:both"></div>   <!-- Uso esto para que no se me junte con el DIV de abajo -->
-                <div style="clear:both"></div>   <!-- Uso esto para que no se me junte con el DIV de abajo -->
-                <div class="row">
                    
                     <?php 
                       
@@ -120,9 +132,9 @@
                      }   
                     while ($tuplaPro = mysqli_fetch_array($resPro)) {
                     ?>
-                    <!-- Inicia el primer producto -->
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        
+                
+                <!-- Inicia el primer producto -->
+                    <div class="col-xs-12 col-sm-6">
                         <div class="thumbnail">
                             <img style="max-width: 320px; max-height: 150px;" src="content/imagen_portada.php?idPro=<?php echo $tuplaPro['idProducto']; ?>" >
                             <div class="caption">
@@ -149,3 +161,6 @@
 
     </div>
     <!-- /.container -->
+    <?php
+    }
+    ?>

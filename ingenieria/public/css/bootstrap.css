@@ -4080,7 +4080,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar-header {
     float: left;
-
   }
 }
 .navbar-collapse {
@@ -4353,7 +4352,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-top: 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-
 }
 .navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
   margin-bottom: 0;
@@ -4366,7 +4364,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-btn {
   margin-top: 8px;
   margin-bottom: 8px;
-
 }
 .navbar-btn.btn-sm {
   margin-top: 10px;
@@ -4416,7 +4413,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-text {
   color: #777;
-  
+
 }
 .navbar-default .navbar-nav > li > a {
   color: #777;
@@ -5323,6 +5320,7 @@ a.list-group-item-danger.active:focus {
 .panel-body {
   padding: 15px;
 }
+
 .panel-heading {
   padding: 10px 15px;
   border-bottom: 1px solid transparent;

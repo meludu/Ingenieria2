@@ -1,4 +1,5 @@
 <?php
+
 	if (!isset($_GET['op'])){
 		$content = 'content/home.php';
 	}
@@ -17,7 +18,6 @@
 			$content = 'content/contacto.php';
 			//$title = 'Contacto';
 			break;
-		
 		case 'cuenta':
 			$content = 'content/cuenta.php';
 			//$title = 'Cuenta';
@@ -28,7 +28,6 @@
 		case 'publicacion':
 			$content = 'content/publicacion.php';
 			break;
-		
 		default:
 			$content = 'content/home.php';
 			//$title = 'home'

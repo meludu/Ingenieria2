@@ -8,24 +8,38 @@
     <meta name="author" content="">
 
     <title>Subasta</title>
-    <link rel="icon" type="image/png" href="public/img/logo.png" />
+
+    <?php
+    include_once('/../helpers/verificar_content.php');
+    if(existe_content_en_url('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']) == 'no existe'){
+        $concat = '/ingenieria2/ingenieria/';
+    }
+    else
+    {
+        $concat = '';
+    }
+    ?>
+    <link rel="icon" type="image/png" href="<?php echo $concat;?>public/img/logo.png" 
+    />
 
     <!-- Bootstrap Core CSS -->
-    <link href="public/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo $concat;?>public/css/bootstrap.css" rel="stylesheet">
     <!-- load font-awesome-->
-    <link href="public/css/font-awesome.css" rel="stylesheet">    
+    <link href="<?php echo $concat;?>public/css/font-awesome.css" rel="stylesheet">    
     <!-- Custom CSS -->
-    <link href="public/css/homepage.css" rel="stylesheet">
-
+    <link href="<?php echo $concat;?>public/css/homepage.css" rel="stylesheet">
+    
+    <link href="<?php echo $concat;?>/public/css/admin.css" rel="stylesheet">
+    
     <link href='http://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet' type='text/css'>
 
-    <link href="public/css/calendar.css" rel="stylesheet">
+    <link href="<?php echo $concat;?>public/css/calendar.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="public/css/parsley.css">    
+    <link rel="stylesheet" href="<?php echo $concat;?>public/css/parsley.css">    
     <!-- scripts para el calendario-->
-    <script src="public/js/calendar.js"></script>
-    <script src="public/js/calendar-es.js"></script>
-    <script src="public/js/calendar-setup.js"></script>
+    <script src="<?php echo $concat;?>public/js/calendar.js"></script>
+    <script src="<?php echo $concat;?>public/js/calendar-es.js"></script>
+    <script src="<?php echo $concat;?>public/js/calendar-setup.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -33,38 +47,38 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script language="JavaScript" src="public/js/jquery.js"></script>
-    <script language="JavaScript" src="public/js/jquery.watermarkinput.js"></script>
+    <script language="JavaScript" src="<?php echo $concat;?>public/js/jquery.js"></script>
+    <script language="JavaScript" src="<?php echo $concat;?>public/js/jquery.watermarkinput.js"></script>
     <script type="text/javascript">
-    $(document).ready(function(){
+        $(document).ready(function(){
 
-    $(".busca").keyup(function() //se crea la funcioin keyup
-    {
-    var texto = $(this).val();//se recupera el valor de la caja de texto y se guarda en la variable texto
-    var dataString = 'palabra='+ texto;//se guarda en una variable nueva para posteriormente pasarla a search.php
-    if(texto=='')//si no tiene ningun valor la caja de texto no realiza ninguna accion y deja de mostrar lo que se buscó.
-    {
-         $("#display").hide(); 
-    }
-    else
-    {
-    $.ajax({//metodo ajax
-    type: "POST",//aqui puede  ser get o post
-    url: "parsers/search.php",//la url adonde se va a mandar la cadena a buscar
-    data: dataString,
-    cache:false,
-    success: function(html)//funcion que se activa al recibir un dato
-    {
-    $("#display").html(html).show();// funcion jquery que muestra el div con identificador display, como formato html, tambien puede ser .text
-    //$("#display").prepend($(html).fadeIn(1200)); 
-    }
-    });
-    }return false;    
-    });
-    });
-    jQuery(function($){//funcion jquery que muestra el mensaje "Buscar producto.." en la caja de texto
-       $("#caja_busqueda").Watermark("");
-       });
+        $(".busca").keyup(function() //se crea la funcioin keyup
+        {
+        var texto = $(this).val();//se recupera el valor de la caja de texto y se guarda en la variable texto
+        var dataString = 'palabra='+ texto;//se guarda en una variable nueva para posteriormente pasarla a search.php
+        if(texto=='')//si no tiene ningun valor la caja de texto no realiza ninguna accion y deja de mostrar lo que se buscó.
+        {
+             $("#display").hide(); 
+        }
+        else
+        {
+        $.ajax({//metodo ajax
+        type: "POST",//aqui puede  ser get o post
+        url: "parsers/search.php",//la url adonde se va a mandar la cadena a buscar
+        data: dataString,
+        cache:false,
+        success: function(html)//funcion que se activa al recibir un dato
+        {
+        $("#display").html(html).show();// funcion jquery que muestra el div con identificador display, como formato html, tambien puede ser .text
+        //$("#display").prepend($(html).fadeIn(1200)); 
+        }
+        });
+        }return false;    
+        });
+        });
+        jQuery(function($){//funcion jquery que muestra el mensaje "Buscar producto.." en la caja de texto
+           $("#caja_busqueda").Watermark("");
+        });
     </script>
 
     <meta http-equiv="conten-type" content="text/html; charset=UTF-8" />
