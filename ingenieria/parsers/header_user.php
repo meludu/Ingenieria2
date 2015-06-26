@@ -44,7 +44,7 @@
         <!-- PRUEBA NOTIFICACION -->
         <ul class="nav navbar-nav navbar-right">
         	<?php if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") { ?>   
-                        <li class="dropdown" style="margin-top:15px;"><button id="boton" style="border:none; background-color:transparent;"><i class="fa fa-bell"></i></button><?php if ($cantNoti != 0) {echo "<stronge style='color:red;'>".$cantNoti."</stronge>"; include("notifacion.php"); }else{ echo $cantNoti; include("notifacion.php"); } ?></li>         
+                        <li class="dropdown" style="margin-top:15px;"><button id="boton" style="border:none; background-color:transparent; outline: 0;"><i class="fa fa-bell" style="color: white;"></i></button><?php if ($cantNoti != 0) {echo "<stronge style='color:red;'>".$cantNoti."</stronge>"; include("notifacion.php"); }else{ echo "<stronge style='color:white;'>".$cantNoti."</stronge>"; include("notifacion.php"); } ?></li>         
                         <li class="dropdown" role="menu">
                           <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                             <?php if ($_SESSION['tieneFoto']) { ?>

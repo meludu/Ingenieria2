@@ -13,6 +13,11 @@
         $queryPro = "SELECT * FROM productos WHERE idProducto = '".$_GET['idP']."' ";
         $resPro = mysqli_query($link,$queryPro);
         $tuplaPro = mysqli_fetch_array($resPro);
+
+        // Para ver si el usuario ya oferto 
+        $queryOfe = "SELECT * FROM ofertas WHERE idProducto = '".$tuplaPro['idProducto']."' AND idUsuario = '".$_SESSION['id']."' ";
+        $resOfe = mysqli_query($link,$queryOfe);
+        $cantOfe = mysqli_num_rows($resOfe);    // si es 1 ya oferto, si es 0 nunca oferto
         
     if ($tuplaPro == false){
         ?>
@@ -25,15 +30,31 @@
 
     ?>
     <!-- Page Content -->
-    <div class="container">
+
+    <div class="container paddingWithoutNav">
 
         <div class="row">
         <div class="col-md-3">
-                <p class="lead">Shop Name</p>
+                <p class="lead">Bestnid - Subastas</p>
                 <div class="list-group">
-                    <a href="#" class="list-group-item active">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
+                <?php if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") {
+                    if ($_SESSION['tipo'] == "usuario" && $_SESSION['id'] != $tuplaPro['idUsuario']) { // si id del usuario logeado es distinto al dueñod e la publicacion, entro
+                        $_SESSION['prod'] = $tuplaPro['idProducto'];   // Hago esto para poder enviar al archivo el id del producto.
+                        if ($cantOfe == 0) {
+                            require("boton_ofertas.php");
+                        }else{
+                            echo "<h3 style='color: white;'>Ya ofertaste. </h3>"; 
+                            $tuplaOfe = mysqli_fetch_array($resOfe);    
+                            $_SESSION['oferta'] = $tuplaOfe['idOferta']; // Me quedo con el id de la oferta para enviarlo.
+                            require("modificar_oferta.php"); ?>
+                            <br><?php
+                            require("eliminar_oferta.php");
+                        }
+                    }else if ($_SESSION['tipo'] == "admin" ) {
+
+                    }
+                }
+                ?>
                 </div>
             </div>
             <div class="col-md-9">
@@ -90,8 +111,8 @@
 
                     <div class="caption-full">
                         <h4 class="pull-right"><i>Se publico el: <?php echo $tuplaPro['fecha_ini']; ?></i></h4>
-                        <h4><a href="#"><?php echo utf8_encode( $tuplaPro['nombre']); ?></a>
-                        </h4>
+
+                        <h4><?php echo utf8_encode( $tuplaPro['nombre']); ?></h4>
                         <p><?php echo  utf8_encode($tuplaPro['descripcionCorta']); ?></p>
                         <br/>
                         <p><?php echo  utf8_encode($tuplaPro['descripcionLarga']); ?></p>

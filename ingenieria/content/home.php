@@ -130,7 +130,7 @@
                     ?>
                 
                 <!-- Inicia el primer producto -->
-                    <div class="col-xs-12 col-sm-6">
+                    <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <img style="max-width: 320px; max-height: 150px;" src="content/imagen_portada.php?idPro=<?php echo $tuplaPro['idProducto']; ?>" >
                             <div class="caption">
