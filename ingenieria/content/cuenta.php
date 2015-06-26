@@ -37,7 +37,7 @@ if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") { // Para ent
         <div class="form-group">
           <label for="exampleInputFile" class="col-md-4 control-label"><i class="fa fa-camera fa-2x"></i></label>
             <div class="col-md-4">
-              <input name="avatar" type="file" id="exampleInputFile" class="file-control" >
+              <input name="avatar" type="file" id="exampleInputFile" class="file-control" required>
               <p class="help-block">Subir foto.</p>
             </div>
         </div>

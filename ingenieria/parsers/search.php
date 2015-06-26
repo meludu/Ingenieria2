@@ -12,7 +12,6 @@ $sql_res=mysql_query("select * from productos where nombre like '%$q%' or descri
 $cantidadDePro = mysql_num_rows($sql_res);
 if($cantidadDePro>0){
 
-
 while($row=mysql_fetch_array($sql_res))
 {
 $idProducto=$row['idProducto'];
@@ -26,8 +25,9 @@ $descrip=$row['descripcionCorta'];
 <div class="display_box" align="left">
 <div style="float:left; margin-right:6px;"><img  src="content/imagen_portada.php?idPro=<?php echo $row['idProducto']; ?>" width="60" height="60" /></div>
 
-<div style="margin-right:6px;"><b class="titul"><?php echo $nombre; ?></b></div>
-<div style="margin-right:6px; font-size:14px;" class="desc"><?php echo $descrip; ?></div></div>
+<div style="margin-right:6px;"><b class="titul"><?php echo utf8_encode($nombre); ?></b></div>
+
+<div style="margin-right:6px; font-size:14px;" class="desc"><?php echo utf8_encode($descrip); ?></div></div>
 </a>
 
 <?php

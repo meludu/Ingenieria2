@@ -1,4 +1,5 @@
     <?php
+    error_reporting(E_ALL ^ E_NOTICE);
     include_once("/../parsers/head.php");
     include_once("/../helpers/chequear_url.php");
 
@@ -59,13 +60,12 @@
     <div class="container paddingWithoutNav">
         <div class="row">
             <div class="col-md-4">
-                
                 <p class="lead">Bestnid - Subastas</p>
                 <!--<div class="list-group"> -->
                 <ul id="side">
                     <?php
                     while ($tupla = mysqli_fetch_array($res)) { ?>                    
-                            <li><a href="?op=prod&idC=<?php echo $tupla['idCategoria']; ?>"><?php echo $tupla["nombre_cat"]; ?></a></li>                           
+                            <li><a href="?op=prod&idC=<?php echo $tupla['idCategoria']; ?>"><?php echo utf8_encode($tupla["nombre_cat"]); ?></a></li>                           
                     <?php  
                         } 
                     ?>
@@ -96,7 +96,6 @@
                                     <img class="slide-image" src="http://placehold.it/800x300" alt="">
                                 </div>
                             </div>
-
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                             </a>
                             <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
@@ -108,7 +107,7 @@
                      }
                     ?>
                 <div class="row" style="margin-bottom: 10px;">
-                     <div class="col-md-8 col-md-offset-5">
+                     <div class="col-md-7 col-md-offset-3">
                         <div>
                             <span class="orderSpan"><i class="fa fa-calendar" style="margin-right:5px;"></i> <a class="btn btn-default linkOrder" href="<?php echo $baseurl . "orden1=DESC"; ?>" title="Lo que no esta por terminar"><i class="fa fa-sort-amount-asc"></i></a> <a class="btn btn-default linkOrder" href="<?php echo $baseurl . "orden2=ASC"; ?>" title="Lo que esta por terminar"><i class="fa fa-sort-amount-desc"></i></a></span>
                             <span><i class="fa fa-arrow-left" style="margin-right:5px;"></i>Ordenar<i class="fa fa-arrow-right" style="margin-left:5px;"></i></span>
@@ -118,9 +117,6 @@
                 </div>
                    
                     <?php 
-                      
-                       
-                        
                       
                     $resPro = mysqli_query($link,$queryPro);
                     $cantidadDePro = mysqli_num_rows($resPro);
@@ -139,8 +135,8 @@
                             <img style="max-width: 320px; max-height: 150px;" src="content/imagen_portada.php?idPro=<?php echo $tuplaPro['idProducto']; ?>" >
                             <div class="caption">
                                 <h4 class="pull-right"></h4>
-                                <h4 ><a class="sar" href="?op=publicacion&idP=<?php echo $tuplaPro['idProducto']; ?>"><?php echo $tuplaPro['nombre']; ?></a></h4>
-                                <p class="descrip"><?php echo $tuplaPro['descripcionCorta']; ?></p>
+                                <h4 ><a class="sar" href="?op=publicacion&idP=<?php echo $tuplaPro['idProducto']; ?>"><?php echo utf8_encode($tuplaPro['nombre']); ?></a></h4>
+                                <p class="descrip"><?php echo utf8_encode($tuplaPro['descripcionCorta']); ?></p>
                             </div>
                             <div class="ratings">
                                 <p class="pull-right"><?php echo $tuplaPro['visitas']." "; ?><i class="fa fa-eye"></i></p>

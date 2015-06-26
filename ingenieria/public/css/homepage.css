@@ -232,6 +232,7 @@ footer {
 .navbar{
     background: #000;
 }
+
 #caja_busqueda /*estilos para la caja principal de busqueda*/
 {
 border-radius: 10px 10px 10px 10px;
@@ -282,6 +283,25 @@ color: #FFF;
 color:#111;
 font-size:16;
 }
+
+/* ESTILO PARA MOSTRAR LAS NOTIFICACIONES*/
+.display_noti 
+{
+padding:2px;
+padding-left:6px; 
+font-size:14px;
+height:40px;
+text-decoration:none;
+color:#3b5999;    
+}
+
+.display_noti:hover
+{
+background: #7f93bc;
+color: #FFF; 
+}
+
+/* ESTILO PARA MOSTRAR LAS NOTIFICACIONES*/
 
 .desc:hover
 {
@@ -394,3 +414,12 @@ a.enlace{
 .linkOrder {
     padding: 10px;
 }
+/* MENU NOTIFICACIONES */
+
+.noti {
+    border: solid black 1px; 
+    display:none; 
+    position: absolute;  
+    width:250px; 
+}
+

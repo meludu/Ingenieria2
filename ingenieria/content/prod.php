@@ -12,7 +12,7 @@
                 <ul id="side">
                     <?php
                     while ($tupla = mysqli_fetch_array($res)) { ?>
-                            <li><a href="?op=prod&idC=<?php echo $tupla['idCategoria']; ?>"><?php echo $tupla["nombre_cat"]; ?></a></li>
+                            <li><a href="?op=prod&idC=<?php echo $tupla['idCategoria']; ?>"><?php echo utf8_encode($tupla["nombre_cat"]); ?></a></li>
                     <?php  
                         } 
                     ?>
@@ -59,8 +59,8 @@
                             <img style="max-width: 320px; max-height: 150px;" src="content/imagen_portada.php?idPro=<?php echo $tuplaPro['idProducto']; ?>" >
                             <div class="caption">
                                 <h4 class="pull-right"></h4>
-                                <h4><a class="sar" href="?op=publicacion&idP=<?php echo $tuplaPro['idProducto']; ?>"><?php echo $tuplaPro['nombre']; ?></a></h4>
-                                <p class="descrip"><?php echo $tuplaPro['descripcionCorta']; ?></p>
+                                <h4><a class="sar" href="?op=publicacion&idP=<?php echo $tuplaPro['idProducto']; ?>"><?php echo  utf8_encode($tuplaPro['nombre']); ?></a></h4>
+                                <p class="descrip"><?php echo utf8_encode($tuplaPro['descripcionCorta']); ?></p>
                             </div>
                             <div class="ratings">
                                 <p class="pull-right"><?php echo $tuplaPro['visitas']." "; ?><i class="fa fa-eye"></i></p>

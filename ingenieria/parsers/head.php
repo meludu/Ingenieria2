@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta http-equiv="conten-type" content="text/html; charset=UTF-8" />
 
     <title>Subasta</title>
 
@@ -40,13 +41,6 @@
     <script src="<?php echo $concat;?>public/js/calendar.js"></script>
     <script src="<?php echo $concat;?>public/js/calendar-es.js"></script>
     <script src="<?php echo $concat;?>public/js/calendar-setup.js"></script>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
     <script language="JavaScript" src="<?php echo $concat;?>public/js/jquery.js"></script>
     <script language="JavaScript" src="<?php echo $concat;?>public/js/jquery.watermarkinput.js"></script>
     <script type="text/javascript">
@@ -56,6 +50,7 @@
         {
         var texto = $(this).val();//se recupera el valor de la caja de texto y se guarda en la variable texto
         var dataString = 'palabra='+ texto;//se guarda en una variable nueva para posteriormente pasarla a search.php
+        
         if(texto=='')//si no tiene ningun valor la caja de texto no realiza ninguna accion y deja de mostrar lo que se buscó.
         {
              $("#display").hide(); 
@@ -80,7 +75,22 @@
            $("#caja_busqueda").Watermark("");
         });
     </script>
+    <!-- Script para div escondido en las notificaciones -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#boton").click(function () {    
+                $('#target').toggle("slow");
+            });
+        });
+    </script>
 
-    <meta http-equiv="conten-type" content="text/html; charset=UTF-8" />
+    <!-- PARA RESPONDER LAS PREGUNTAS. () -->
+    <!--<script type="text/javascript">
+        $(document).ready(function(){
+             $(".boton").click(function () {    
+                $('.target').toggle("slow");
+            });
+        });
+    </script> -->
     
 </head>
