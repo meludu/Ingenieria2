@@ -54,7 +54,8 @@
                           <ul class="dropdown-menu" role="menu">
                         <?php if ($_SESSION['tipo'] == "usuario" ) { ?>
                             <li><a href="?op=publicar">Publicar producto</a></li>
-                            <li><a href="?op=cuenta">Mis ventas</a></li>
+                            <!--<li><a href="?op=cuenta">Mis ventas</a></li> -->
+                            <li><a href="?op=misProds">Mis productos</a></li>
                             <li class="divider"></li>
                         <?php } ?>
                           	<li><a href="?op=cuenta">Editar perfil</a></li>

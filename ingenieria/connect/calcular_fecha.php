@@ -27,10 +27,10 @@ function interval_date($init,$finish) {
     return $tiempo;*/
 
     if ($diferencia >= 0) {
-        if ($diferencia < 60) {
-            $tiempo = "Termina hoy!";
-        }else if($diferencia > 3600 && $diferencia < 86400){
-            $tiempo = "Termina hoy!";
+        if (($diferencia < 60) || ($diferencia > 3600 && $diferencia < 86400)) {
+            $tiempo = "Termina hoy a las 23:59hs!";
+        //}else if($diferencia > 3600 && $diferencia < 86400){
+            //$tiempo = "Termina hoy!";
         }else if($diferencia >= 86400 && $diferencia < 2592000){
             $tiempo = "Termina en " . floor($diferencia/86400) . " d&iacute;as";
         }else{

@@ -36,6 +36,9 @@
 		case 'allNoti':
 			$content = 'content/todas_notificaciones.php';
 			break;
+		case 'misProds':
+			$content = 'content/mis_productos.php';
+			break;
 		default:
 			$content = 'content/home.php';
 			//$title = 'home'
