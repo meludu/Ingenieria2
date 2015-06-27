@@ -213,9 +213,6 @@ $cant = 1;
 			$.post('getIdCategForEdit.php',{idCategoria:idC},function(response){
 				$('#contentEditForm').html(response);
 				$('#categoriaEdit').focus();
-				/*$('#formEditCategoria').attr('data-parsley-validate');
-				$('#categoriaEdit').attr('data-parsley-trigger', 'change');
-				$('#categoriaEdit').createAttribute('data-parsley-validate-if-empty');*/
 			});
 		});
 		$(".bajaCategClass").click(function() {
