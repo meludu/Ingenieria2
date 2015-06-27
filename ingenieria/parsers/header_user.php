@@ -60,6 +60,7 @@
                         <?php } ?>
                           	<li><a href="?op=cuenta">Editar perfil</a></li>
                              <?php if ($_SESSION['tipo'] == "admin") {?>
+                             <!--<li><a href="?op=subastas">Subastas</a></li> -->
                             <li><a href="content/administrar.php">Administrar</a></li> 
                              <?php } ?>          
                             <li class="divider"></li>

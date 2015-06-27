@@ -39,6 +39,9 @@
 		case 'misProds':
 			$content = 'content/mis_productos.php';
 			break;
+		case 'subastas': //Si el usuario es admin - desp pasarlo a handler admin
+			$content = 'content/subastas.php';
+			break;
 		default:
 			$content = 'content/home.php';
 			//$title = 'home'
