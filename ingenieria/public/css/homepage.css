@@ -301,6 +301,15 @@ background: #7f93bc;
 color: #FFF; 
 }
 
+
+/*MIS PRODUCTOS - O ARTICULOS*/
+.radius-ultimo-hijo:last-child {
+    border-bottom-radius-right: .5em;
+    border-bottom-radius-left: .5em;
+}
+
+/**/
+
 /* ESTILO PARA MOSTRAR LAS NOTIFICACIONES*/
 
 .desc:hover
