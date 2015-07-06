@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_POST['idGanador'])){
-	print_r($_POST['idGanador']);
+	//print_r($_POST['idGanador']);
 	$id_ganador = $_POST['idGanador'];
 	include_once('../connect/conexion.php');
 	$queryElegir = 'SELECT u.nombre AS nombre, u.apellido AS apellido, u.idUsuario AS idUsuario, o.idProducto idProducto FROM usuarios u 
@@ -15,8 +15,8 @@ if(isset($_POST['idGanador'])){
 		$agregarIdGanador = "UPDATE productos SET idGanador='$id_ganador' WHERE idProducto='$id_producto'";
 			//echo "$sql";
 		if($res = mysqli_query($link, $agregarIdGanador)){
-		?>
-			<div><?php echo 'Este usuario <strong>ha sido elegido como ganador!  </strong><a href="#"style="font-size:10px;">Cambiar</a>';?></div>
+		?>	
+		<button type="button" class="btn btn-primary" onclick="location.href='index.php?op=misProds'" data-dismiss="modal">Si</button>
 		<?php
 		}
 		?>

@@ -87,7 +87,7 @@
                       <td><?php echo $result_ofer['email'];?></td>
                       <td><?php echo $result_ofer['oferta'];?></td>
                       <td><?php echo "$".$result_ofer['precio'];?></td>
-                      <td id="informGanador<?php echo $num_row;?>">
+                      <td>
                         <?php
                         $queryGanador = 'SELECT idGanador FROM productos WHERE idProducto='.$result_ofer['idProducto'];
                         $ejec_ganad = mysqli_query($link, $queryGanador);
@@ -95,7 +95,7 @@
                         while($tuplaGanador = mysqli_fetch_array($ejec_ganad)){
                           if ($tuplaGanador['idGanador'] == 0){
                             ?>
-                            <a type="button" id="ganador_<?php echo $result_ofer['idUsuario'];?>" class="btn btn-primary elegirGanador" >Elegir como ganador</a>
+                            <a type="button" id="ganador_<?php echo $result_ofer['idUsuario'];?>" class="btn btn-primary elegirGanador" data-toggle='modal' data-target='.modalElegirGanador' >Elegir como ganador</a>
                             <span id="contentNombreGanador<?php echo $result_ofer['idUsuario'];?>"></span>
                           <?php
                           }else{
@@ -103,7 +103,7 @@
                             //se imprime que el ofertador de la fila es el que esta marcado como ganador. Solamente él!
                             if ($tuplaGanador['idGanador'] === $result_ofer['idUsuario']){
                               ?>
-                              <div><?php echo 'Este usuario <strong>ha sido elegido como ganador!  </strong><a href="#"style="font-size:12px;">Cambiar</a>';?></div>
+                              <div><?php echo 'Este usuario <strong>ha sido elegido como ganador!</strong>';?></div>
                             <?php
                             }
                             else {
@@ -143,13 +143,26 @@
         idGano = parseInt(values[1]),
         botonElegirGanador = $(this).attr('id'); 
       $.post('content/elegirGanador.php',{idGanador:idGano},function(response){
-        $('#'+botonElegirGanador).addClass('hidden');
-        $('.informGanador').addClass('hidden');
-        $('#contentNombreGanador'+idGano.toString()).html(response);
+        $('#eligioGanador').html(response);
       });
     }); 
 </script>
 
+<!-- BEGIN MODAL-->
+  <div class="modal fade modalElegirGanador" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          Est&aacute; seguro que desea elegir a esta oferta como la ganadora?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            <span id="eligioGanador"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END MODAL-->
 <?php
 	}else{ ?>
 		<div class="alert alert-danger" role="alert">

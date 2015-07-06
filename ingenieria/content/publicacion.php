@@ -165,13 +165,13 @@
                         <div class="col-md-12">
                             <?php echo utf8_encode($tuplaPre['apeUser']." ".$tuplaPre['nombUser']); ?>
                             <span class="pull-right"><?php echo "El ".$tuplaPre['fechaPre']." a las ".$tuplaPre['horaPre']; ?></span>
-                            <p><?php echo  utf8_encode($tuplaPre['preg']); ?></p>
+                            <p><?php echo htmlspecialchars(utf8_encode($tuplaPre['preg'])); ?></p>
 
                     <?php if ($tuplaPro['idUsuario'] == $_SESSION['id'] && $numRes == 0) {  // Si el usuario logeado es igual al dueño de la publicacion. ?>
                             <button class="btn<?php echo $tuplaPre['idPre'] ?>" style="border:none; background-color:transparent; outline: 0; float: right;"><i class="fa fa-comment"></i></button>
                             <div class="div<?php echo $tuplaPre['idPre'] ?> col-md-12" style="display:none; z-index: 9999;">
-                                <form method="POST" name="comentario" action="connect/enviar_respuesta.php">
-                                    <textarea class="form-control" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="3" cols="112" ></textarea><br/> 
+                                <form method="POST" name="comentario" action="connect/enviar_respuesta.php" data-parsley-validate>
+                                    <textarea class="form-control" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="3" cols="112" data-parsley-validate-if-empty required></textarea><br/> 
                                     <input type="text" style="border:none; background-color:transparent;" name="remLen" value="255" disabled readonly>
                                     <input type="hidden" name="preg" value="<?php echo $tuplaPre['idPre']; ?>">
                                     <input type="hidden" name="elProd" value="<?php echo $_GET['idP']; ?>">
@@ -184,7 +184,7 @@
                             $tuplaRes = mysqli_fetch_array($resres2); ?>
                             <?php echo "<i style='color: #836690;'>".utf8_encode($tuplaRes['apellido']).", ".utf8_encode($tuplaRes['nombre'])."</i>"; ?>
                             <span class="pull-right"><?php echo "El ".$tuplaRes['f']." a las ".$tuplaRes['h']; ?></span>
-                            <p><?php echo utf8_encode($tuplaRes['respuesta']); ?></p>
+                            <p><?php echo htmlspecialchars(utf8_encode($tuplaRes['respuesta'])); ?></p>
                     <?php } ?>
                         </div>
                     </div>
@@ -201,8 +201,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <p>Escribe un comentario: </p>
-                            <form action="connect/enviar_comentario.php" method="POST" name="comentario">
-                                <textarea class="form-control" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="3" cols="112" ></textarea><br/> 
+                            <form action="connect/enviar_comentario.php" method="POST" name="comentario" data-parsley-validate>
+                                <textarea class="form-control" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="3" cols="112" data-parsley-validate-if-empty required></textarea><br/> 
                                 <input type="text" style="border:none; background-color:transparent;" name="remLen" value="255" disabled readonly>
                                 <input type="hidden" name="elProd" value="<?php echo $_GET['idP']; ?>">
                                 <input class="btn btn-primary" style="float:right;" type="submit" name="boton" value="Comentar">                        
