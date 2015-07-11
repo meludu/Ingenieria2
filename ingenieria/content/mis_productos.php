@@ -65,10 +65,19 @@
                           INNER JOIN usuarios u ON (o.idUsuario = u.idUsuario)
                           WHERE idProducto='.$tuplaProds['idProducto'];
           $ejec_ofer = mysqli_query($link, $queryOferta);
+
+          $queryCantOfertas = 'SELECT COUNT(*) FROM ofertas o 
+                          INNER JOIN usuarios u ON (o.idUsuario = u.idUsuario)
+                          WHERE idProducto='.$tuplaProds['idProducto'];
+          $ejec_cantOfer = mysqli_query($link, $queryCantOfertas);
+          $cantOfertas = mysqli_fetch_array($ejec_cantOfer);
           ?>
           <td colspan=8 style="padding:0;">
             <div class="collapse" id="ofertasId<?php echo $tuplaProds['idProducto'];?>">
               <div class="well" style="border:none; padding-top:5px; padding-bottom:5px; padding-left:15px; padding-right:15px; margin-bottom:0;">
+              <?php
+                if($cantOfertas[0] > 0){
+                ?>
                 <table class="table">
                   <thead style="background-color: #f5f5f5;">
                     <th>Ofertador</th>
@@ -79,52 +88,65 @@
                   </thead>
                   <tbody style="background-color: #e8e8e8;">
                     <?php
-                    while ($result_ofer = mysqli_fetch_array($ejec_ofer)){
-                    $num_row = 1;
-                    ?>
-                    <tr class="radius-ultimo-hijo">
-                      <td><?php echo $result_ofer['nombre']." ".$result_ofer['apellido'];?></td>
-                      <td><?php echo $result_ofer['email'];?></td>
-                      <td><?php echo $result_ofer['oferta'];?></td>
-                      <td><?php echo "$".$result_ofer['precio'];?></td>
-                      <td>
-                        <?php
-                        $queryGanador = 'SELECT idGanador FROM productos WHERE idProducto='.$result_ofer['idProducto'];
-                        $ejec_ganad = mysqli_query($link, $queryGanador);
-                        //$tuplaGanador = mysqli_fetch_array($ejec_ganad);
-                        while($tuplaGanador = mysqli_fetch_array($ejec_ganad)){
-                          if ($tuplaGanador['idGanador'] == 0){
-                            ?>
-                            <a type="button" id="ganador_<?php echo $result_ofer['idUsuario'];?>" class="btn btn-primary elegirGanador" data-toggle='modal' data-target='.modalElegirGanador' >Elegir como ganador</a>
-                            <span id="contentNombreGanador<?php echo $result_ofer['idUsuario'];?>"></span>
-                          <?php
-                          }else{
-                            //En caso de que IdGanador no sea 0, quiere decir que ya existe uno.
-                            //se imprime que el ofertador de la fila es el que esta marcado como ganador. Solamente él!
-                            if ($tuplaGanador['idGanador'] === $result_ofer['idUsuario']){
-                              ?>
-                              <div><?php echo 'Este usuario <strong>ha sido elegido como ganador!</strong>';?></div>
-                            <?php
-                            }
-                            else {
-                              ?>
-                              <script>
-
-                              </script>
-                            <?php
-                            }
-                            
-                          }
-                        }
+                    
+                      while ($result_ofer = mysqli_fetch_array($ejec_ofer)){
+                        $num_row = 1;
+                    
                         ?>
-                      </td>
-                    </tr>
-                    <?php
-                    $num_row = $num_row + 1;
-                    }
+                        <tr class="radius-ultimo-hijo">
+                          <td><?php echo utf8_encode($result_ofer['nombre'])." ".utf8_encode($result_ofer['apellido']);?></td>
+                          <td><?php echo $result_ofer['email'];?></td>
+                          <td><?php echo utf8_encode($result_ofer['oferta']);?></td>
+                          <td><?php echo "$".$result_ofer['precio'];?></td>
+                          <td>
+                            <?php
+                            $queryGanador = 'SELECT idGanador FROM productos WHERE idProducto='.$result_ofer['idProducto'];
+                            $ejec_ganad = mysqli_query($link, $queryGanador);
+                            //$tuplaGanador = mysqli_fetch_array($ejec_ganad);
+                            while($tuplaGanador = mysqli_fetch_array($ejec_ganad)){
+                              if ($tuplaGanador['idGanador'] == 0){
+                                ?>
+                                <a type="button" id="ganador_<?php echo $result_ofer['idUsuario'];?>" class="btn btn-primary elegirGanador" data-toggle='modal' data-target='.modalElegirGanador' >Elegir como ganador</a>
+                                <span id="contentNombreGanador<?php echo $result_ofer['idUsuario'];?>"></span>
+                              <?php
+                              }else{
+                                //En caso de que IdGanador no sea 0, quiere decir que ya existe uno.
+                                //se imprime que el ofertador de la fila es el que esta marcado como ganador. Solamente él!
+                                if ($tuplaGanador['idGanador'] === $result_ofer['idUsuario']){
+                                  ?>
+                                  <div><?php echo 'Este usuario <strong>ha sido elegido como ganador!</strong>';?></div>
+                                <?php
+                                }
+                                else {
+                                  ?>
+                                  <script>
+
+                                  </script>
+                                <?php
+                                }
+                                
+                              }
+                            }
+                            ?>
+                          </td>
+                        </tr>
+                        <?php
+                        $num_row = $num_row + 1;
+                      }
                     ?>
                   </tbody> 
                 </table>
+                <?php
+                }
+                else{
+                  ?>
+                  <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    No hay ofertas para este producto
+                  </div>
+                <?php
+                }
+                ?>
               </div>
             </div>
           </td>
