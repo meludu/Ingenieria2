@@ -21,14 +21,26 @@ function justNumbers(e) {
         <h4 class="modal-title" id="exampleModalLabel">Modificando oferta</h4>
       </div>
       <div class="modal-body">
-        <form action="content/modificar_oferta.php" method="POST">
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Precio:</label>
-            <input class="form-control" name="numero" onkeypress="return justNumbers(event);" type="text" value="<?php echo $tuplaOferta['precio']; ?>" required>
+        <?php
+        // Los delimitadores pueden ser barra, punto o guión
+        $precio_total = $tuplaOferta['precio'];
+        $precios = explode('.', $precio_total);
+        $precio_ent = $precios[0]; // entero
+        $precio_decimal = $precios[1]; // decimal
+        ?>
+        <form action="content/modificar_oferta.php" method="POST" data-parsley-validate>
+          <div class="form-inline">
+            <label class="control-label">Precio:</label>
+            <div class="input-group">
+              <div class="input-group-addon">$</div>
+              <input type="text" class="form-control" data-parsley-trigger="change" data-parsley-type="integer" data-parsley-type="number" data-parsley-min="1" name="precioEnteroModif" value="<?php echo $precio_ent; ?>" placeholder="Valor Entero" required>
+              <div class="input-group-addon">.</div>
+              <input type="text" class="form-control" data-parsley-trigger="change" data-parsley-type="integer" data-parsley-type="number" data-parsley-maxlength="2" data-parsley-min="0" value="<?php if ($precio_decimal != null){echo $precio_decimal;} else{echo "00";}?>" name="precioDecimalModif" placeholder="Escriba de la forma: nn" required>
+            </div>
           </div>
           <div class="form-group">
             <label for="message-text" class="control-label">Necesidad:</label>
-            <textarea class="form-control" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="4" cols="112" required><?php echo $tuplaOferta['oferta']; ?></textarea>
+            <textarea class="form-control" data-parsley-trigger="change" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="4" cols="112" required><?php echo $tuplaOferta['oferta']; ?></textarea>
           </div>
           <input type="text" style="border:none; background-color:transparent;" name="remLen" value="255" disabled readonly>
           <div class="modal-footer">
@@ -46,8 +58,13 @@ function justNumbers(e) {
 	if (isset($_POST['btn_modificar'])) {
 		include("../connect/conexion.php");
 		session_start();
-		if (!empty($_POST['numero']) && !empty($_POST['texto'])) {
-			$queryModOfe = "UPDATE ofertas SET oferta = '".$_POST['texto']."', precio = '".$_POST['numero']."' WHERE idOferta = '".$_SESSION['oferta']."' ";
+		if (!empty($_POST['precioEnteroModif']) && !empty($_POST['precioDecimalModif']) && !empty($_POST['texto'])) {
+
+      $precioEntero = $_POST['precioEnteroModif'];
+      $precioDecimal = $_POST['precioDecimalModif'];
+      $precioTotal = $precioEntero . '.' . $precioDecimal;
+
+			$queryModOfe = "UPDATE ofertas SET oferta = '".$_POST['texto']."', precio = '".$precioTotal."' WHERE idOferta = '".$_SESSION['oferta']."' ";
 			mysqli_query($link,$queryModOfe);
 			header("Location: ../index.php?op=publicacion&idP=".$_SESSION['prod']);
 		}else{ ?>
