@@ -50,8 +50,10 @@
                             <br><?php
                             require("eliminar_oferta.php");
                         }
-                    }else if ($_SESSION['tipo'] == "admin" ) {
-
+                    }else if ($_SESSION['tipo'] == "usuario" && $_SESSION['id'] == $tuplaPro['idUsuario']) { ?>
+                        <a href="?op=editarPubl&idP=<?php echo $_GET['idP']; ?>"><button type="button" class="btn btn-success btn-lg btn-block">Editar</button></a><br>
+                        <?php 
+                        require("borrar_publicacion.php"); 
                     }
                 }
                 ?>

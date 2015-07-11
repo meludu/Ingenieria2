@@ -42,6 +42,9 @@
 		case 'subastas': //Si el usuario es admin - desp pasarlo a handler admin
 			$content = 'content/subastas.php';
 			break;
+		case 'editarPubl':
+			$content = 'content/editarPublicacion.php';
+			break;
 		default:
 			$content = 'content/home.php';
 			//$title = 'home'
