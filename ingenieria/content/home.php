@@ -75,26 +75,37 @@
             <div class="col-md-8">
                 <?php
                 if(!isset($_GET['clave'])){
-                                               
+
+                    $queryDestacados = "SELECT p.idProducto, p.portada, p.tipoPortada, COUNT(o.idOferta) AS cantidad FROM ofertas o INNER JOIN productos p ON(o.idProducto = p.idProducto) GROUP BY p.idProducto, p.portada, p.tipoPortada ORDER BY cantidad DESC LIMIT 3";   
+                    $resDestacados = mysqli_query($link,$queryDestacados);
+
                 ?>
                 <div class="row carousel-holder">
                     <div class="col-md-12">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                <?php
+                                    $n1 = 0;
+                                    $tipo1 = "active";
+                                    for ($i = 0; $i < 3; $i++) { ?>
+                                        <li data-target="#carousel-example-generic" data-slide-to="<?php echo $n1; ?>" class="<?php echo $tipo1; ?>"></li>
+                                    <?php
+                                        $n1 += 1; 
+                                        $tipo1 = " ";
+                                    }
+                                    ?>
                             </ol>
                             <div class="carousel-inner">
-                                <div class="item active">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                            <?php
+                                $tipo2 = "active";
+                                while ($tuplaDestacados = mysqli_fetch_array($resDestacados)) {
+                            ?>
+                                <div class="item <?php echo $tipo2; ?>">
+                                    <a href="index.php?op=publicacion&idP=<?php echo $tuplaDestacados['idProducto']; ?>"><img class="slide-image" style="width: 850px; height: 300px;" src="content/imagen_portada.php?idPro=<?php echo $tuplaDestacados['idProducto']; ?>" alt=""></a>
                                 </div>
-                                <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
+                                <?php $tipo2 = " "; 
+                                }
+                                ?>
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                             </a>

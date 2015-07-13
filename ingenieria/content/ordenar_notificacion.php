@@ -1,5 +1,8 @@
 <?php
 	if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") {
+
+    $
+
 		$queryTodasNoti = "SELECT n.idNotificacion AS idNot, n.idProducto AS pro,n.mensaje AS msj, p.nombre AS titulo, n.fecha AS fec, u.nombre AS nom, u.apellido AS ape, n.estado AS est, n.hora AS h FROM notificaciones n INNER JOIN productos p ON(n.idProducto = p.idProducto) INNER JOIN usuarios u ON(n.idEmisor = u.idUsuario) WHERE idReceptor = '".$_SESSION['id']."' ORDER BY n.fecha DESC, n.hora DESC";
 		$resTodasNoti = mysqli_query($link,$queryTodasNoti);
 		$cantN = mysqli_num_rows($resTodasNoti);

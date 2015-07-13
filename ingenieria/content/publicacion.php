@@ -64,17 +64,26 @@
                             <br><?php
                             require("eliminar_oferta.php");
                         }
+
+                      }else if ($_SESSION['tipo'] == "usuario" && $_SESSION['id'] == $tuplaPro['idUsuario']) { ?>
+                        <a href="?op=editarPubl&idP=<?php echo $_GET['idP']; ?>"><button type="button" class="btn btn-success btn-lg btn-block">Editar</button></a><br>
+                        <?php 
+                        require("borrar_publicacion.php");
                       }
                     }
-                }
-                else{
-                   
-                    ?>
-                    <a type="button" href="?op=login" class="btn btn-success btn-lg btn-block"> ofertar</a>
-                    <?php
-                   
-                }
+                    else{
+                       
+                        ?>
+                        <a type="button" href="?op=login" class="btn btn-success btn-lg btn-block"> ofertar</a>
+                        <?php
+                       
+                    }
                 ?>
+                <br>
+                <!-- Mensaje del error
+                <div class="alert alert-success" role="alert">
+                    <p>La publicaci&oacute;n fue modificada. </p>
+                </div> -->
                 </div>
             </div>
 

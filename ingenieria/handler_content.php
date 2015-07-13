@@ -21,6 +21,9 @@
 			$content = 'content/cuenta.php';
 			//$title = 'Cuenta';
 			break;
+		case 'config':
+			$content = 'content/configuracion.php';
+			break;
 		case 'prod':
 			$content = 'content/prod.php';
 			break;
@@ -41,6 +44,9 @@
 			break;
 		case 'subastas': //Si el usuario es admin - desp pasarlo a handler admin
 			$content = 'content/subastas.php';
+			break;
+		case 'editarPubl':
+			$content = 'content/editar_publicacion.php';
 			break;
 		default:
 			$content = 'content/home.php';

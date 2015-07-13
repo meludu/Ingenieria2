@@ -58,7 +58,8 @@
                             <li><a href="?op=misProds">Mis productos</a></li>
                             <li class="divider"></li>
                         <?php } ?>
-                          	<li><a href="?op=cuenta">Editar perfil</a></li>
+                          	<li><a href="?op=cuenta">Perfil</a></li>
+                            <li><a href="?op=config">Configuraci&oacute;n</a></li>
                              <?php if ($_SESSION['tipo'] == "admin") {?>
                              <!--<li><a href="?op=subastas">Subastas</a></li> -->
                             <li><a href="content/administrar.php">Administrar</a></li> 
