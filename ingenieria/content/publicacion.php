@@ -53,7 +53,7 @@
                 if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") {
                     if ($_SESSION['tipo'] == "usuario" && $_SESSION['id'] != $tuplaPro['idUsuario']) { // si id del usuario logeado es distinto al dueñod e la publicacion, entro
                         $_SESSION['prod'] = $tuplaPro['idProducto'];   // Hago esto para poder enviar al archivo el id del producto.
-                      if(interval_date($fechaActual[0],$tuplaPro['fecha_fin'])<>"Publicaci&oacute;n finalizada."){
+                     if(interval_date($fechaActual[0],$tuplaPro['fecha_fin'])<>"Publicaci&oacute;n finalizada."){
                         if ($cantOfe == 0) {
                             require("boton_ofertas.php");
                         }else{
@@ -65,12 +65,13 @@
                             require("eliminar_oferta.php");
                         }
 
-                      }else if ($_SESSION['tipo'] == "usuario" && $_SESSION['id'] == $tuplaPro['idUsuario']) { ?>
+                      }
+                    }else if ($_SESSION['tipo'] == "usuario" && $_SESSION['id'] == $tuplaPro['idUsuario'] && interval_date($fechaActual[0],$tuplaPro['fecha_fin']) != "Publicaci&oacute;n finalizada.") { ?>
                         <a href="?op=editarPubl&idP=<?php echo $_GET['idP']; ?>"><button type="button" class="btn btn-success btn-lg btn-block">Editar</button></a><br>
                         <?php 
                         require("borrar_publicacion.php");
                       }
-                    }
+                }
                     else{
                        
                         ?>
