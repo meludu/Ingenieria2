@@ -104,9 +104,9 @@
                     </div>
                 </div>
                  <?php
-                    }
+                     }
                     ?>
-                   
+        
                     <?php 
                       
                     $resPro = mysqli_query($link, $queryPro);

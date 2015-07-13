@@ -2,6 +2,7 @@
         function contador (campo, cuentacampo, limite) { 
             if (campo.value.length > limite) campo.value = campo.value.substring(0, limite); 
             else cuentacampo.value = limite - campo.value.length; 
+
         } 
     </script>
 
@@ -12,7 +13,6 @@
         $queryPro = "SELECT * FROM productos WHERE idProducto = '".$_GET['idP']."' ";
         $resPro = mysqli_query($link,$queryPro);
         $tuplaPro = mysqli_fetch_array($resPro);
-
   // Incremento la cantidad de vistos.
         if ($_SESSION['tipo'] == "usuario" && $_SESSION['id'] != $tuplaPro['idUsuario']){
         $queryVistos = "UPDATE productos SET visitas = visitas + 1 WHERE idProducto = '".$_GET['idP']."' ";
@@ -25,8 +25,8 @@
         $cantOfe = mysqli_num_rows($resOfe);    // si es 1 ya oferto, si es 0 nunca oferto
 
         $queryOfe2= "SELECT * from ofertas o INNER jOIN productos p ON(p.idProducto=o.idProducto) WHERE p.idProducto = '".$tuplaPro['idProducto']."' AND p.idUsuario = '".$_SESSION['id']."' ";
-        $resOfe2= mysqli_query($link,$queryOfe2);
-        $cantOfe2 = mysqli_num_rows($resOfe2);
+         $resOfe2= mysqli_query($link,$queryOfe2);
+         $cantOfe2 = mysqli_num_rows($resOfe2);
     if ($tuplaPro == false){
         ?>
         <script>
@@ -39,46 +39,49 @@
     ?>
     <!-- Page Content -->
     <div class="container paddingWithoutNav">
+
         <div class="row">
-            <div class="col-md-3">
+        <div class="col-md-3">
                 <p class="lead">Bestnid - Subastas</p>
                 <div class="list-group">
-                    <?php 
-                    $consultaFecha = "SELECT CURDATE()"; 
-                    $resFecha = mysqli_query($link,$consultaFecha); 
-                    $fechaActual = mysqli_fetch_array($resFecha); 
-                    include_once("connect/calcular_fecha.php");
-                    if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") {
-                        if ($_SESSION['tipo'] == "usuario" && $_SESSION['id'] != $tuplaPro['idUsuario']) { // si id del usuario logeado es distinto al dueñod e la publicacion, entro
-                            $_SESSION['prod'] = $tuplaPro['idProducto'];   // Hago esto para poder enviar al archivo el id del producto.
-                            if(interval_date($fechaActual[0],$tuplaPro['fecha_fin'])<>"Publicaci&oacute;n finalizada."){
-                                if ($cantOfe == 0) {
-                                    require("boton_ofertas.php");
-                                }else{
-                                    echo "<h3 style='color: white;'>Ya ofertaste. </h3>"; 
-                                    $tuplaOfe = mysqli_fetch_array($resOfe);    
-                                    $_SESSION['oferta'] = $tuplaOfe['idOferta']; // Me quedo con el id de la oferta para enviarlo.
-                                    require("modificar_oferta.php"); ?>
-                                    <br><?php
-                                    require("eliminar_oferta.php");
-                                }
-                            }
+
+                <?php 
+                $consultaFecha = "SELECT CURDATE()"; 
+                $resFecha = mysqli_query($link,$consultaFecha); 
+                $fechaActual = mysqli_fetch_array($resFecha); 
+                include_once("connect/calcular_fecha.php");
+                if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") {
+                    if ($_SESSION['tipo'] == "usuario" && $_SESSION['id'] != $tuplaPro['idUsuario']) { // si id del usuario logeado es distinto al dueñod e la publicacion, entro
+                        $_SESSION['prod'] = $tuplaPro['idProducto'];   // Hago esto para poder enviar al archivo el id del producto.
+                      if(interval_date($fechaActual[0],$tuplaPro['fecha_fin'])<>"Publicaci&oacute;n finalizada."){
+                        if ($cantOfe == 0) {
+                            require("boton_ofertas.php");
+                        }else{
+                            echo "<h3 style='color: white;'>Ya ofertaste. </h3>"; 
+                            $tuplaOfe = mysqli_fetch_array($resOfe);    
+                            $_SESSION['oferta'] = $tuplaOfe['idOferta']; // Me quedo con el id de la oferta para enviarlo.
+                            require("modificar_oferta.php"); ?>
+                            <br><?php
+                            require("eliminar_oferta.php");
                         }
+                      }
                     }
-                    else{
-                        ?>
-                        <a type="button" href="?op=login" class="btn btn-success btn-lg btn-block"> ofertar</a>
-                        <?php1
-                    }
+                }
+                else{
+                   
                     ?>
+                    <a type="button" href="?op=login" class="btn btn-success btn-lg btn-block"> ofertar</a>
+                    <?php
+                   
+                }
+                ?>
                 </div>
             </div>
-                    
+
+
             <div class="col-md-9">
                 <div class="thumbnail">
-                    <!-- <img class="img-responsive" src="http://placehold.it/800x300" alt="">  ESTE ERA EL ORIGINAL ANTES -->
-
-                    <!-- eSTE ES IGUAL AL DEL HOME PARA PROBAR -->
+                   
                     <?php
                         $queryCantImg = "SELECT COUNT(*) FROM imagenes i INNER JOIN productos p ON(i.idProducto = p.idProducto) WHERE p.idProducto = '".$_GET['idP']."' ";
                         $resCantImg = mysqli_query($link,$queryCantImg);
@@ -88,49 +91,50 @@
 
                             $queryImg = "SELECT * FROM imagenes WHERE idProducto = '".$_GET['idP']."' ";
                             $resImg = mysqli_query($link,$queryImg);
+                    ?>
+
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                            <?php 
+                                $n1 = 0;
+                                $tipo1 = "active";
+                                for ($i = $cantImg[0]; $i > 0; $i--) {
                             ?>
-                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                <?php 
-                                    $n1 = 0;
-                                    $tipo1 = "active";
-                                    for ($i = $cantImg[0]; $i > 0; $i--) {
-                                ?>
-                                    <li data-target="#carousel-example-generic" data-slide-to="<?php echo $n1; ?>" class="<?php echo $tipo1; ?>"></li>
-                                    <?php $n1 += 1; $tipo1 = " "; ?>
-                                <?php
-                                    }
-                                ?>
-                                </ol>
-                                <div class="carousel-inner">
-                                    <?php
-                                        $tipo2 = "active";
-                                        while ($tuplaImg = mysqli_fetch_array($resImg)) {
-                                    ?>
-                                        <div class="item <?php echo $tipo2; ?>">
-                                            <img class="slide-image" style="width: 850px; height: 300px;" src="<?php echo $tuplaImg['url']; ?>" alt="">
-                                        </div>
-                                        <?php $tipo2 = " "; ?>
-                                    <?php
-                                        }
-                                    ?>
+                                <li data-target="#carousel-example-generic" data-slide-to="<?php echo $n1; ?>" class="<?php echo $tipo1; ?>"></li>
+                                <?php $n1 += 1; $tipo1 = " "; ?>
+                            <?php
+                                }
+                            ?>
+                            </ol>
+                            <div class="carousel-inner">
+                            <?php
+                                $tipo2 = "active";
+                                while ($tuplaImg = mysqli_fetch_array($resImg)) {
+                            ?>
+                                <div class="item <?php echo $tipo2; ?>">
+                                    <img class="slide-image" style="width: 850px; height: 300px;" src="<?php echo $tuplaImg['url']; ?>" alt="">
                                 </div>
-                                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                </a>
-                                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                </a>
+                                <?php $tipo2 = " "; ?>
+                            <?php
+                                }
+                            ?>
                             </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                            </a>
+                        </div>
 
-                        <?php
-                            }
-                            else{
-                                ?>
-                                <img  class="papa"onmouseover="this.width=500;this.height=400;" onmouseout="this.width=100;this.height=80;" width="100" height="80" alt="" src="content/imagen_portada.php?idPro=<?php echo $tuplaPro['idProducto']; ?>">
-                                <?php
+                    <?php
+                        }
+                        else{
+                            ?>
+                            <img  class="papa"onmouseover="this.width=500;this.height=400;" onmouseout="this.width=100;this.height=80;" width="100" height="80" alt="" src="content/imagen_portada.php?idPro=<?php echo $tuplaPro['idProducto']; ?>">
+                            <?php
 
-                            }
-                        ?>
-                        <!-- TERMINA ACA -->
+                        }
+                    ?>
+                    <!-- TERMINA ACA -->
 
                     <div class="caption-full">
                         <h4 class="pull-right"><i>Se publico el: <?php echo $tuplaPro['fecha_ini']; ?></i></h4>
@@ -142,12 +146,12 @@
                     <?php 
                         $consultaFecha = "SELECT CURDATE()"; 
                         $resFecha = mysqli_query($link,$consultaFecha); 
-                        $fechaActual = mysqli_fetch_array($resFecha);
-                        include("connect/calcular_fecha.php");
+                        $fechaActual = mysqli_fetch_array($resFecha); 
+                        //include("connect/calcular_fecha.php");
                     ?>                  
                     <div class="ratings">
                         <p class="pull-right"><?php echo $tuplaPro['visitas']." "; ?><i class="fa fa-eye"></i></p>
-                        <p><?php echo interval_date($fechaActual[0],$tuplaPro['fecha_fin']); ?></p>
+                        <p  ><?php echo interval_date($fechaActual[0],$tuplaPro['fecha_fin']); ?></p>
                     </div>
                 </div>
 
@@ -192,8 +196,8 @@
                     <?php if ($tuplaPro['idUsuario'] == $_SESSION['id'] && $numRes == 0) {  // Si el usuario logeado es igual al dueño de la publicacion. ?>
                             <button class="btn<?php echo $tuplaPre['idPre'] ?>" style="border:none; background-color:transparent; outline: 0; float: right;"><i class="fa fa-comment"></i></button>
                             <div class="div<?php echo $tuplaPre['idPre'] ?> col-md-12" style="display:none; z-index: 9999;">
-                                <form method="POST" name="comentario" action="connect/enviar_respuesta.php" data-parsley-validate>
-                                    <textarea class="form-control" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="3" cols="112" data-parsley-validate-if-empty required></textarea><br/> 
+                                <form method="POST" name="comentario" action="connect/enviar_respuesta.php">
+                                    <textarea class="form-control" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="3" cols="112" ></textarea><br/> 
                                     <input type="text" style="border:none; background-color:transparent;" name="remLen" value="255" disabled readonly>
                                     <input type="hidden" name="preg" value="<?php echo $tuplaPre['idPre']; ?>">
                                     <input type="hidden" name="elProd" value="<?php echo $_GET['idP']; ?>">
@@ -223,8 +227,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <p>Escribe un comentario: </p>
-                            <form action="connect/enviar_comentario.php" method="POST" name="comentario" data-parsley-validate>
-                                <textarea class="form-control" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="3" cols="112" data-parsley-validate-if-empty required></textarea><br/> 
+                            <form action="connect/enviar_comentario.php" method="POST" name="comentario">
+                                <textarea class="form-control" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="3" cols="112" required></textarea><br/> 
                                 <input type="text" style="border:none; background-color:transparent;" name="remLen" value="255" disabled readonly>
                                 <input type="hidden" name="elProd" value="<?php echo $_GET['idP']; ?>">
                                 <input class="btn btn-primary" style="float:right;" type="submit" name="boton" value="Comentar">                        
@@ -235,10 +239,12 @@
                                 <center><p>No puedes comentar tu publicaci&oacute;n!</p></center>
                       <?php } ?>
                     <?php }   ?>
-            </div>
-        </div>
-    </div>
+                </div>
 
-    <!--</div> -->
+            </div>
+
+        </div>
+
+    </div>
     <!-- /.container -->
 <?php } ?>
