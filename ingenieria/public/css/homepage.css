@@ -224,6 +224,7 @@ html[xmlns] #side {
 .thumbnail .caption-full {
     padding: 9px;
     color: #333;
+    word-break: break-all;
 }
 
 footer {
@@ -265,6 +266,7 @@ font-size:18px;
 height:63px;
 text-decoration:none;
 color:#3b5999; 
+overflow: auto;
 }
 
 .display_box:hover /*estilos para cada caja unitaria de cada producto que se muestra. cuando el mouse se pocisiona sobre el area*/
@@ -282,6 +284,7 @@ color: #FFF;
 {
 color:#111;
 font-size:16;
+word-break:break-all;
 }
 
 /* ESTILO PARA MOSTRAR LAS NOTIFICACIONES*/
@@ -381,6 +384,7 @@ color:#FFF;
 }
 .descrip{
     color:#222222;
+    word-break: break-all;
 }
 .col-sm-12{
     color:#222222;
@@ -412,6 +416,7 @@ a.enlace{
 /*.form-control,.well{
     border-color: #8A0808;
 
+<<<<<<< HEAD
 }
 */
 /*hecho por mi*/
@@ -432,3 +437,7 @@ a.enlace{
     width:250px; 
 }
 
+
+.puntos{
+   word-break:break-all;
+}

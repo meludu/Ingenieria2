@@ -1,5 +1,5 @@
     <?php
-    error_reporting(E_ALL ^ E_NOTICE);
+    error_reporting(E_ALL ^ E_WARNING ^ E_NOTICE);
     include_once("/../parsers/head.php");
     include_once("/../helpers/chequear_url.php");
 
@@ -104,21 +104,12 @@
                     </div>
                 </div>
                  <?php
-                     }
+                    }
                     ?>
-                <div class="row" style="margin-bottom: 10px;">
-                     <div class="col-md-7 col-md-offset-3">
-                        <div>
-                            <span class="orderSpan"><i class="fa fa-calendar" style="margin-right:5px;"></i> <a class="btn btn-default linkOrder" href="<?php echo $baseurl . "orden1=DESC"; ?>" title="Lo que no esta por terminar"><i class="fa fa-sort-amount-asc"></i></a> <a class="btn btn-default linkOrder" href="<?php echo $baseurl . "orden2=ASC"; ?>" title="Lo que esta por terminar"><i class="fa fa-sort-amount-desc"></i></a></span>
-                            <span><i class="fa fa-arrow-left" style="margin-right:5px;"></i>Ordenar<i class="fa fa-arrow-right" style="margin-left:5px;"></i></span>
-                            <span class="orderSpan"></span><i class="fa fa-eye" style="margin-right:5px;"></i> <a class="btn btn-default linkOrder" href="<?php echo $baseurl . "orden3=DESC"; ?>" title="Lo mas vistos"><i class="fa fa-sort-amount-asc"></i></a> <a class="btn btn-default linkOrder" href="<?php echo $baseurl . "orden4=ASC"; ?>" title="Lo menos visto"><i class="fa fa-sort-amount-desc"></i></i></a></span>    
-                        </div>
-                     </div>           
-                </div>
                    
                     <?php 
                       
-                    $resPro = mysqli_query($link,$queryPro);
+                    $resPro = mysqli_query($link, $queryPro);
                     $cantidadDePro = mysqli_num_rows($resPro);
                     if($cantidadDePro==0){
                           ?>
@@ -126,13 +117,25 @@
                         <a class="enlace" href="index.php">Volver al inicio</a>
                       <?php
                      }   
+                     else{?>
+                             <div class="row" style="margin-bottom: 10px;">
+                     <div class="col-md-7 col-md-offset-3">
+                        <div style="float:right">
+                            <span class="orderSpan"><i class="fa fa-calendar" style="margin-right:5px;"></i> <a class="btn btn-default linkOrder" href="<?php echo $baseurl . "orden1=DESC"; ?>" title="Lo que no esta por terminar"><i class="fa fa-sort-amount-asc"></i></a> <a class="btn btn-default linkOrder" href="<?php echo $baseurl . "orden2=ASC"; ?>" title="Lo que esta por terminar"><i class="fa fa-sort-amount-desc"></i></a></span>
+                            <span><i class="fa fa-arrow-left" style="margin-right:5px;"></i>Ordenar<i class="fa fa-arrow-right" style="margin-left:5px;"></i></span>
+                            <span class="orderSpan"></span><i class="fa fa-eye" style="margin-right:5px;"></i> <a class="btn btn-default linkOrder" href="<?php echo $baseurl . "orden3=DESC"; ?>" title="Lo mas vistos"><i class="fa fa-sort-amount-asc"></i></a> <a class="btn btn-default linkOrder" href="<?php echo $baseurl . "orden4=ASC"; ?>" title="Lo menos visto"><i class="fa fa-sort-amount-desc"></i></i></a></span>    
+                        </div>
+                     </div>           
+                </div>
+                    <?php
+                     }
                     while ($tuplaPro = mysqli_fetch_array($resPro)) {
                     ?>
                 
                 <!-- Inicia el primer producto -->
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img style="max-width: 320px; max-height: 150px;" src="content/imagen_portada.php?idPro=<?php echo $tuplaPro['idProducto']; ?>" >
+                            <a href="?op=publicacion&idP=<?php echo $tuplaPro['idProducto']; ?>"><img style="max-width: 320px; max-height: 150px;" src="content/imagen_portada.php?idPro=<?php echo $tuplaPro['idProducto']; ?>" ></a>
                             <div class="caption">
                                 <h4 class="pull-right"></h4>
                                 <h4 ><a class="sar" href="?op=publicacion&idP=<?php echo $tuplaPro['idProducto']; ?>"><?php echo utf8_encode($tuplaPro['nombre']); ?></a></h4>

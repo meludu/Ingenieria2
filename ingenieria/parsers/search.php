@@ -5,7 +5,7 @@ include("/../connect/clase_conexion.php");
 if($_POST)
 {
 
-$q=$_POST['palabra'];//se recibe la cadena que queremos buscar
+$q=htmlspecialchars($_POST['palabra'],ENT_QUOTES);//se recibe la cadena que queremos buscar
 
 $sql_res=mysql_query("select * from productos where nombre like '%$q%' or descripcionCorta like'%$q%' order by visitas DESC limit 4",$c);
 

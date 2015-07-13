@@ -16,6 +16,9 @@
                 <li>
                     <a href="../index.php"><i class="fa fa-home"></i> Home</a>
                 </li>
+                <li>
+                    <a href="?siteMap=ganancias"><i class="fa fa-table"></i> ganancias</a>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->

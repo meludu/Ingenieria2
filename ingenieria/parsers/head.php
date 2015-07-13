@@ -30,7 +30,7 @@
     <!-- Custom CSS -->
     <link href="<?php echo $concat;?>public/css/homepage.css" rel="stylesheet">
     
-    <link href="<?php echo $concat;?>public/css/admin.css" rel="stylesheet">
+    <link href="<?php echo $concat;?>/public/css/admin.css" rel="stylesheet">
     
     <link href='http://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet' type='text/css'>
 

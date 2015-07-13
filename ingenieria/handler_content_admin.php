@@ -5,6 +5,9 @@
 		case 'categorias':
 			$content = '/../content/categorias.php';
 			break;
+		case 'ganancias':
+			$content = '/../content/ganancias.php';
+			break;
 		default:
 			$content = '/../content/categorias.php';
 			break;
