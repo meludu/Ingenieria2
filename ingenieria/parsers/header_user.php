@@ -8,7 +8,7 @@
 
     <!-- Navigation -->
     <div class="navbar-header">
-    <img  class="img"src="public/img/logo.png" href="index.php">
+    <a href="index.php"><img  class="img"src="public/img/logo.png" href="index.php"></a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
