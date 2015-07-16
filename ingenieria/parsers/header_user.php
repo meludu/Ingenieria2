@@ -15,7 +15,7 @@
             <li class="active">
             	<a class="btn navbar-btn loginRegButtons" href="index.php">Home</a></li>
             <li>
-                <a class="btn navbar-btn loginRegButtons" href="#">F.A.Q</a>
+                <a class="btn navbar-btn loginRegButtons" href="?op=faq">F.A.Q</a>
             </li>
             <li>
                 <a class="btn navbar-btn loginRegButtons" href="?op=contacto">Contacto</a>

@@ -138,9 +138,10 @@
 
           $vis = 0; // Inicializo las visitas en 0.
           $ganador = 0;  // Inicializo ganador en null (modifique la BD).
+          $estadoP = 0; 
           $fechaMod = date('Y-m-d',strtotime($fec_fin));
 
-          $queryAltaPro = "INSERT INTO productos (nombre, descripcionCorta, descripcionLarga, portada, tipoPortada, visitas, idCategoria, fecha_ini, fecha_fin, idUsuario, idGanador) VALUES ('".$_POST['titulo']."', '".$_POST['descCorta']."', '".$_POST['descLarga']."', '".$data."', '".$tipo."', '".$vis."', '".$_POST['nomCat']."', '".$fechaAct[0]."', '".$fechaMod."', '".$_SESSION['id']."', '".$ganador."') ";
+          $queryAltaPro = "INSERT INTO productos (nombre, descripcionCorta, descripcionLarga, portada, tipoPortada, visitas, idCategoria, fecha_ini, fecha_fin, idUsuario, idGanador, estado) VALUES ('".$_POST['titulo']."', '".$_POST['descCorta']."', '".$_POST['descLarga']."', '".$data."', '".$tipo."', '".$vis."', '".$_POST['nomCat']."', '".$fechaAct[0]."', '".$fechaMod."', '".$_SESSION['id']."', '".$ganador."', '".$estadoP."') ";
           $resultado = mysqli_query($link,$queryAltaPro);
 
             //echo $queryAltaPro;

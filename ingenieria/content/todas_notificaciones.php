@@ -8,7 +8,7 @@
     if (isset($_GET['orden'])) {
       switch ($_GET['orden']) {
         case 'preguntas':
-          $queryOrder ='SELECT n.idNotificacion AS idNot, n.idProducto AS pro,n.mensaje AS msj, p.nombre AS titulo, n.fecha AS fec, u.nombre AS nom, u.apellido AS ape, n.estado AS est, n.hora AS h, p.estado AS estP FROM notificaciones n INNER JOIN productos p ON(n.idProducto = p.idProducto) INNER JOIN usuarios u ON(n.idEmisor = u.idUsuario) WHERE idReceptor = '.$_SESSION['id'].' AND n.mensaje LIKE "%ah respondido tu pregunta%" ORDER BY n.fecha DESC, n.hora DESC';
+          $queryOrder ='SELECT n.idNotificacion AS idNot, n.idProducto AS pro,n.mensaje AS msj, p.nombre AS titulo, n.fecha AS fec, u.nombre AS nom, u.apellido AS ape, n.estado AS est, n.hora AS h, p.estado AS estP FROM notificaciones n INNER JOIN productos p ON(n.idProducto = p.idProducto) INNER JOIN usuarios u ON(n.idReceptor = u.idUsuario) WHERE n.idReceptor = '.$_SESSION['id'].' AND n.mensaje NOT LIKE "% ah respondido tu pregunta en %" ORDER BY n.fecha DESC, n.hora DESC';
           break;
         case 'respuestas':
           $queryOrder = 'SELECT n.idNotificacion AS idNot, n.idProducto AS pro,n.mensaje AS msj, p.nombre AS titulo, n.fecha AS fec, u.nombre AS nom, u.apellido AS ape, n.estado AS est, n.hora AS h, p.estado AS estP FROM notificaciones n INNER JOIN productos p ON(n.idProducto = p.idProducto) INNER JOIN usuarios u ON(n.idReceptor = u.idUsuario) WHERE n.idEmisor = '.$_SESSION['id'].' AND n.mensaje LIKE "% ah respondido tu pregunta en %" ORDER BY n.fecha DESC, n.hora DESC';

@@ -48,7 +48,7 @@
 
         if (isset($_GET['clave']) && $_GET['clave'] != ""){
             $baseurl = "index.php?clave=" . $_GET['clave'] . "&";
-            $queryPro = "SELECT * FROM productos WHERE estado = '0' AND nombre LIKE '%$palabra%'or descripcionCorta like'%$palabra%' ORDER BY $orden $tipoOrden";
+            $queryPro = "SELECT * FROM productos WHERE estado = '0' AND (nombre LIKE '%$palabra%'or descripcionCorta like'%$palabra%') ORDER BY $orden $tipoOrden";
         }
         else{
             $baseurl = "index.php?";

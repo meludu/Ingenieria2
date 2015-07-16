@@ -19,11 +19,11 @@
 
 <?php
   // Veo que la publicacion no tenga preguntas, ni ofertas.
-  $queryCantPre = "SELECT COUNT(*) FROM preguntas p INNER JOIN preguntas_productos pp ON(p.idPregunta = pp.idPregunta) INNER JOIN productos pro ON(pp.idProducto = pro.idProducto) WHERE pro.idProducto = '".$_GET['idP']."' ";
+  $queryCantPre = "SELECT COUNT(*) FROM preguntas p INNER JOIN preguntas_productos pp ON(p.idPregunta = pp.idPregunta) INNER JOIN productos pro ON(pp.idProducto = pro.idProducto) WHERE pro.idProducto = '".$_POST['idPro']."' ";
   $resCantPre = mysqli_query($link,$queryCantPre);
   $tuplaCantPre = mysqli_fetch_array($resCantPre);
 
-  $queryCantOfer = "SELECT COUNT(*) FROM ofertas WHERE idProducto = '".$_GET['idP']."' ";
+  $queryCantOfer = "SELECT COUNT(*) FROM ofertas WHERE idProducto = '".$_POST['idPro']."' ";
   $resCantOfer = mysqli_query($link,$queryCantOfer);
 
   $tuplaCantOfer = mysqli_fetch_array($resCantOfer);
@@ -33,7 +33,7 @@
     $resCat = mysqli_query($link,$queryCat);
    
     // Traigo de la BD la publicacion a modificar. 
-    $queryPubMod = "SELECT p.nombre AS nom, p.descripcionCorta AS descCor, p.descripcionLarga AS descLar, p.fecha_ini AS fi, p.fecha_fin AS ff, p.idCategoria AS idC, c.nombre_cat AS nomC FROM productos p INNER JOIN categorias c ON(p.idCategoria = c.idCategoria) WHERE p.idProducto = '".$_GET['idP']."' ";
+    $queryPubMod = "SELECT p.nombre AS nom, p.descripcionCorta AS descCor, p.descripcionLarga AS descLar, p.fecha_ini AS fi, p.fecha_fin AS ff, p.idCategoria AS idC, c.nombre_cat AS nomC FROM productos p INNER JOIN categorias c ON(p.idCategoria = c.idCategoria) WHERE p.idProducto = '".$_POST['idPro']."' ";
     $resPubMod = mysqli_query($link,$queryPubMod);
     $tuplaPubMod = mysqli_fetch_array($resPubMod);
 ?>
@@ -97,7 +97,7 @@
       </div>  
     </div>
 
-    <input name="idPro" type="hidden" value="<?php echo $_GET['idP']; ?>">
+    <input name="idPro" type="hidden" value="<?php echo $_POST['idPro'];  ?>">
     <input name="fi" type="hidden" value="<?php echo $tuplaPubMod['fi']; ?>">
 
     <div class="form-group">
@@ -111,11 +111,16 @@
 </div>
 
 <?php
-  }else{  // fin if que comprueba si ofertas y preg osn 0 ?>
-    <script type="text/javascript">
-      alert("La publicacion tiene preguntas u ofertas; no es posible modificarla. ");
-      history.go(-1);
+  }else{
+  ?>
+  <script type="text/javascript">
+      window.onload = function() { document.formEdit.submit(); }
+      //window.location="index.php?op=publicacion&idP="+<?php echo $_POST['idPro']; ?>;
     </script>
+    <form id="formEdit" name="formEdit" action="index.php?op=publicacion&idP=<?php echo $_POST['idPro']; ?>" method="POST">
+      <input type="hidden" name="errorEdit" value="error">
+    </form>
+    
   <?php
   }
 ?>

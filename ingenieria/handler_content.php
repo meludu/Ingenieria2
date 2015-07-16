@@ -48,6 +48,9 @@
 		case 'editarPubl':
 			$content = 'content/editar_publicacion.php';
 			break;
+		case 'faq':
+			$content = 'content/faq.php';
+			break;
 		default:
 			$content = 'content/home.php';
 			//$title = 'home'

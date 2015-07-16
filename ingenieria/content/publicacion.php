@@ -67,9 +67,18 @@
 
                       }
                     }else if ($_SESSION['tipo'] == "usuario" && $_SESSION['id'] == $tuplaPro['idUsuario'] && interval_date($fechaActual[0],$tuplaPro['fecha_fin']) != "Publicaci&oacute;n finalizada.") { ?>
-                        <a href="?op=editarPubl&idP=<?php echo $_GET['idP']; ?>"><button type="button" class="btn btn-success btn-lg btn-block">Editar</button></a><br>
+                        <form action="?op=editarPubl" method="POST">
+                            <input type="hidden" name="idPro" value="<?php echo $_GET['idP']; ?>">
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Editar</button><br>
+                        </form>
                         <?php 
                         require("borrar_publicacion.php");
+                        if (isset($_POST['errorEdit'])) {
+                            if ($_POST['errorEdit'] == "error") {
+                                echo '<br>';
+                                echo '<div id="errorEdit" class="alert alert-danger" role="alert"><p>La publicacion tiene preguntas u ofertas; no es posible modificarla. </p></div>';
+                            }    
+                        }
                       }
                 }
                     else{
