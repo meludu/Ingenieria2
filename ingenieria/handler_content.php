@@ -42,6 +42,9 @@
 		case 'misProds':
 			$content = 'content/mis_productos.php';
 			break;
+		case 'misOfer':
+			$content = 'content/mis_ofertas.php';
+			break;
 		case 'subastas': //Si el usuario es admin - desp pasarlo a handler admin
 			$content = 'content/subastas.php';
 			break;

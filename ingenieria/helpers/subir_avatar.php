@@ -46,8 +46,9 @@
 		echo "Enviaste campos vacios... ";
 	}*/
 
-	if ( !empty($_POST['nombre']) && !empty($_POST['apellido'])) {
-		$resultado = mysqli_query($link,"UPDATE usuarios SET nombre = '".$_POST['nombre']."' , apellido = '".$_POST['apellido']."' WHERE idUsuario = '".$_SESSION['id']."' ");
+
+	if ( !empty($_POST['nombre']) && !empty($_POST['apellido']) && !empty($_POST['sexo']) && !empty($_POST['fecha'])) {
+		$resultado = mysqli_query($link,"UPDATE usuarios SET nombre = '".$_POST['nombre']."' , apellido = '".$_POST['apellido']."', sexo = '".$_POST['sexo']."', fecha_nac = '".$_POST['fecha']."' WHERE idUsuario = '".$_SESSION['id']."' ");
 		if ($resultado){  // Se guardo todo perfectamente!
 			header("Location: ../?op=cuenta");	//Estaria bueno agregar un mensaje de exito!
 		}else{ // Error al copiar el archivo

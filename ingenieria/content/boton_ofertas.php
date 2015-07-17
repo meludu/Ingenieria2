@@ -65,7 +65,6 @@ function justNumbers(e) {
       $horaAct = mysqli_fetch_array($resHoraAct);
 
       // Cargo la nueva oferta en la BD
-
       $queryOferta = "INSERT INTO ofertas (oferta, idUsuario, idProducto, precio, fecha, hora) VALUES ('".$_POST['texto']."', '".$_SESSION['id']."', '".$_SESSION['prod']."', '".$precioTotal."', '".$fechaAct[0]."', '".$horaAct[0]."')";
 
       if (mysqli_query($link,$queryOferta)) {
@@ -80,4 +79,4 @@ function justNumbers(e) {
     <?php
     }
   }
-  ?>
+?>

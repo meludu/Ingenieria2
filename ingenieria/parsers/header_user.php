@@ -57,6 +57,7 @@
                             <li><a href="?op=publicar">Publicar producto</a></li>
                             <!--<li><a href="?op=cuenta">Mis ventas</a></li> -->
                             <li><a href="?op=misProds">Mis productos</a></li>
+                            <li><a href="?op=misOfer">Mis ofertas</a></li>
                             <li class="divider"></li>
                         <?php } ?>
                           	<li><a href="?op=cuenta">Perfil</a></li>

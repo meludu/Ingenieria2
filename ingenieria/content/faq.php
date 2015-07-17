@@ -54,17 +54,18 @@
             </div>
         </div>
 
-        <div class="faqHeader"><strong class="colorLetra">Publicar producto</strong></div>
+        <div class="faqHeader"><strong class="colorLetra">Publicaciones</strong></div>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Who cen sell items?</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">¿Como publicar?</a>
                 </h4>
             </div>
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
                     <img src="http://vignette2.wikia.nocookie.net/mortalkombatfanon/images/3/3a/BODY_SCORPION.png/revision/latest?cb=20150111005708">Any registed user, who presents a work, which is genuine and appealing, can post it onAny registed user, who presents a work, which is genuine and appealing, can post it onAny registed user, who presents a work, which is genuine and appealing, can post it onAny registed user, who presents a work, which is genuine and appealing, can post it onAny registed user, who presents a work, which is genuine and appealing, can post it onAny registed user, who presents a work, which is genuine and appealing, can post it on <strong>PrepBootstrap</strong>.
-                    
+                    Para publicar un producto tienes que <a href="../index.php?op=login">iniciar sesi&oacute;n</a> con tu cuenta y dirigirte a la esquina superior derecha
+                    <br><img src="imagenes/ayuda/publicar.png">
                 </div>
             </div>
         </div>

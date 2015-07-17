@@ -24,9 +24,9 @@
     <div class="form-group">
       <label for="inputSexo" class="col-md-4 control-label">Sexo <i>*</i>:</label>
       <div class="col-md-5">
-        <input type="radio" name="sexo" id="genderM" value="Masculino" required />Masculino
+        <input type="radio" name="sexo" id="genderM" value="Masculino" required /> Masculino
         <br>
-        <input type="radio" name="sexo" id="genderF" value="Femenino" />Femenino
+        <input type="radio" name="sexo" id="genderF" value="Femenino" /> Femenino
       </div>
     </div><!-- End form -->
     <div class="form-group">

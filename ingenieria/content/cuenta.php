@@ -35,6 +35,30 @@ if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") { // Para ent
         </div> <!-- End Form-->
 
         <div class="form-group">
+          <label for="inputUserName" class="col-md-4 control-label"><i class="fa fa-pencil fa-2x"></i></label>
+          <div class="col-md-4">
+            <input type="radio" name="sexo" id="genderM" value="Masculino"  <?php if ($tuplaUser['sexo'] == "Masculino") { echo 'checked="checked"'; } ?> required /> Masculino
+            <br>
+            <input type="radio" name="sexo" id="genderF" value="Femenino" <?php if ($tuplaUser['sexo'] == "Femenino") { echo 'checked="checked"'; } ?>  /> Femenino  
+          </div> <!-- End Form-->
+        </div> <!-- End Form-->
+
+
+        <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+          <script>
+          webshims.setOptions('waitReady', false);
+          webshims.setOptions('forms-ext', {types: 'date'});
+          webshims.polyfill('forms forms-ext');
+        </script>
+        <div class="form-group">
+          <label for="inputUserName" class="col-md-4 control-label"><i class="fa fa-pencil fa-2x"></i></label>
+          <div class="col-md-4">
+            <input type="date" name="fecha" value="<?php echo $tuplaUser['fecha_nac']; ?>" class="form-control" id="input-userName" required>
+          </div> <!-- End Form-->
+        </div> <!-- End Form-->
+
+
+        <div class="form-group">
           <label for="exampleInputFile" class="col-md-4 control-label"><i class="fa fa-camera fa-2x"></i></label>
             <div class="col-md-4">
               <input name="avatar" type="file" id="disabledInput" class="file-control" disabled>
@@ -50,7 +74,6 @@ if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") { // Para ent
       </form><!-- End Form-->
   </div>
   </div>
-
 <?php 
 }
 else{

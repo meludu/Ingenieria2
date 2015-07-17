@@ -120,7 +120,6 @@
     <form id="formEdit" name="formEdit" action="index.php?op=publicacion&idP=<?php echo $_POST['idPro']; ?>" method="POST">
       <input type="hidden" name="errorEdit" value="error">
     </form>
-  
   <?php
   }
 ?>

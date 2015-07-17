@@ -45,7 +45,9 @@
                             $orden = "visitas";
                             $tipoOrden = "ASC";
                         }
+                        
                         $idCat = $_GET['idC']; 
+
                         $queryPro = "SELECT idProducto, nombre, descripcionCorta, visitas, fecha_fin FROM productos WHERE estado = '0' AND idCategoria = $idCat ORDER BY $orden $tipoOrden";
                         $resPro = mysqli_query($link,$queryPro);
                         $resContarPro = mysqli_query($link,$queryPro);
@@ -56,7 +58,7 @@
                     <!-- Inicia el primer producto -->
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img style="max-width: 320px; max-height: 150px;" src="content/imagen_portada.php?idPro=<?php echo $tuplaPro['idProducto']; ?>" >
+                            <a href="index.php?op=publicacion&idP=<?php echo $tuplaPro['idProducto']; ?>"><img style="max-width: 320px; max-height: 150px;" src="content/imagen_portada.php?idPro=<?php echo $tuplaPro['idProducto']; ?>" ></a>
                             <div class="caption">
                                 <h4 class="pull-right"></h4>
                                 <h4><a class="sar" href="?op=publicacion&idP=<?php echo $tuplaPro['idProducto']; ?>"><?php echo  utf8_encode($tuplaPro['nombre']); ?></a></h4>
