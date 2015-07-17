@@ -13,15 +13,13 @@ if(isset($_POST['idGanador'])){
 	if ($tupla = mysqli_fetch_array($ejec_query)){
 		$id_producto = $tupla['idProducto'];
 		$agregarIdGanador = "UPDATE productos SET idGanador='$id_ganador' WHERE idProducto='$id_producto'";
-			//echo "$sql";
-		if($res = mysqli_query($link, $agregarIdGanador)){
-		?>	
-		<button type="button" class="btn btn-primary" onclick="location.href='index.php?op=misProds'" data-dismiss="modal">Si</button>
-		<?php
-		}
+		/*if($res = mysqli_query($link, $agregarIdGanador)){
+			//print_r($id_ganador);
 		?>
 		
-	<?php
+		<?php	
+		}*/
+		
 	}
 }
 ?>
