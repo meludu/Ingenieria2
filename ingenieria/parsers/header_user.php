@@ -35,6 +35,7 @@
 
         <?php
             if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") {
+
                 $queryNoti = "SELECT * FROM notificaciones n INNER JOIN productos p ON(n.idProducto = p.idProducto) WHERE p.estado = '0' AND n.idReceptor = '".$_SESSION['id']."' AND n.estado = '1' ";
                 $resNoti = mysqli_query($link,$queryNoti);
                 $cantNoti = mysqli_num_rows($resNoti);

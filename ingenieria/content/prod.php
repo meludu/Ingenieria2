@@ -45,7 +45,7 @@
                             $orden = "visitas";
                             $tipoOrden = "ASC";
                         }
-                        $idCat = $_GET['idC'];
+                        $idCat = $_GET['idC']; 
                         $queryPro = "SELECT idProducto, nombre, descripcionCorta, visitas, fecha_fin FROM productos WHERE estado = '0' AND idCategoria = $idCat ORDER BY $orden $tipoOrden";
                         $resPro = mysqli_query($link,$queryPro);
                         $resContarPro = mysqli_query($link,$queryPro);

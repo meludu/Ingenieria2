@@ -7,6 +7,7 @@ include_once("/../parsers/head.php");
 
 
 if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online" && $_SESSION['tipo']=="admin") { // Para entrar aca hay que iniciar session
+
 	//contenido dinamico
 	include_once("/../parsers/sidebar.php");
     include_once("/../handler_content_admin.php");
@@ -17,6 +18,7 @@ if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online" && $_SESSION['
 }
 else
 {
+
 
 ?>
 <div class="alert alert-danger" role="alert">

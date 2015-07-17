@@ -10,7 +10,11 @@
         session_start();
 
         // Selecciono el producto.
+<<<<<<< HEAD
         $queryPro = "SELECT * FROM productos WHERE idProducto = '".$_GET['idP']."' AND estado = '0' ";
+=======
+        $queryPro = "SELECT * FROM productos WHERE idProducto = '".$_GET['idP']."' ";
+>>>>>>> Administrar
         $resPro = mysqli_query($link,$queryPro);
         $tuplaPro = mysqli_fetch_array($resPro);
   // Incremento la cantidad de vistos.
@@ -67,6 +71,7 @@
 
                       }
                     }else if ($_SESSION['tipo'] == "usuario" && $_SESSION['id'] == $tuplaPro['idUsuario'] && interval_date($fechaActual[0],$tuplaPro['fecha_fin']) != "Publicaci&oacute;n finalizada.") { ?>
+<<<<<<< HEAD
                         <!-- Formulario que contiene el boton editar publicacion -->
                         <form action="?op=editarPubl" method="POST">
                             <input type="hidden" name="idPro" value="<?php echo $_GET['idP']; ?>">
@@ -80,6 +85,11 @@
                                 echo '<div id="errorEdit" class="alert alert-danger" role="alert"><p>La publicacion tiene preguntas u ofertas; no es posible modificarla. </p></div>';
                             }    
                         }
+=======
+                        <a href="?op=editarPubl&idP=<?php echo $_GET['idP']; ?>"><button type="button" class="btn btn-success btn-lg btn-block">Editar</button></a><br>
+                        <?php 
+                        require("borrar_publicacion.php");
+>>>>>>> Administrar
                       }
                 }
                     else{
@@ -149,7 +159,11 @@
                         }
                         else{
                             ?>
+<<<<<<< HEAD
                             <img style="width: 850px; height: 300px;" class="papa"onmouseover="this.width=500;this.height=400;" onmouseout="this.width=100;this.height=80;" width="100" height="80" alt="" src="content/imagen_portada.php?idPro=<?php echo $tuplaPro['idProducto']; ?>">
+=======
+                            <img  class="papa"onmouseover="this.width=500;this.height=400;" onmouseout="this.width=100;this.height=80;" width="100" height="80" alt="" src="content/imagen_portada.php?idPro=<?php echo $tuplaPro['idProducto']; ?>">
+>>>>>>> Administrar
                             <?php
 
                         }
@@ -216,8 +230,13 @@
                     <?php if ($tuplaPro['idUsuario'] == $_SESSION['id'] && $numRes == 0) {  // Si el usuario logeado es igual al dueño de la publicacion. ?>
                             <button class="btn<?php echo $tuplaPre['idPre'] ?>" style="border:none; background-color:transparent; outline: 0; float: right;"><i class="fa fa-comment"></i></button>
                             <div class="div<?php echo $tuplaPre['idPre'] ?> col-md-12" style="display:none; z-index: 9999;">
+<<<<<<< HEAD
                                 <form method="POST" name="comentario" action="connect/enviar_respuesta.php" data-parsley-validate >
                                     <textarea data-parsley-trigger="change" class="form-control" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="3" cols="112" required></textarea><br/> 
+=======
+                                <form method="POST" name="comentario" action="connect/enviar_respuesta.php">
+                                    <textarea class="form-control" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="3" cols="112" ></textarea><br/> 
+>>>>>>> Administrar
                                     <input type="text" style="border:none; background-color:transparent;" name="remLen" value="255" disabled readonly>
                                     <input type="hidden" name="preg" value="<?php echo $tuplaPre['idPre']; ?>">
                                     <input type="hidden" name="elProd" value="<?php echo $_GET['idP']; ?>">
@@ -247,8 +266,13 @@
                     <div class="row">
                         <div class="col-md-12">
                             <p>Escribe un comentario: </p>
+<<<<<<< HEAD
                             <form action="connect/enviar_comentario.php" method="POST" name="comentario" data-parsley-validate>
                                 <textarea data-parsley-trigger="change" class="form-control" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="3" cols="112" required></textarea><br/> 
+=======
+                            <form action="connect/enviar_comentario.php" method="POST" name="comentario">
+                                <textarea class="form-control" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="3" cols="112" required></textarea><br/> 
+>>>>>>> Administrar
                                 <input type="text" style="border:none; background-color:transparent;" name="remLen" value="255" disabled readonly>
                                 <input type="hidden" name="elProd" value="<?php echo $_GET['idP']; ?>">
                                 <input class="btn btn-primary" style="float:right;" type="submit" name="boton" value="Comentar">                        

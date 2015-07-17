@@ -120,7 +120,7 @@
     <form id="formEdit" name="formEdit" action="index.php?op=publicacion&idP=<?php echo $_POST['idPro']; ?>" method="POST">
       <input type="hidden" name="errorEdit" value="error">
     </form>
-    
+  
   <?php
   }
 ?>
@@ -134,7 +134,6 @@
     $queryAct = "UPDATE productos SET nombre = '".$_POST['titulo']."', descripcionCorta = '".$_POST['descCorta']."', descripcionLarga = '".$_POST['descLarga']."', idCategoria = '".$_POST['nomCat']."', fecha_fin = '".$fec_fin."' WHERE idProducto = '".$_POST['idPro']."' ";
     if (mysqli_query($link,$queryAct)) { ?>
       <script type="text/javascript">
-        // alert("Se modifico la publicacion!! ");
         window.location="index.php?op=publicacion&idP="+<?php echo $_POST['idPro']; ?>; 
       </script>
     <?php

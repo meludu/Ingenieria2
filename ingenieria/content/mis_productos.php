@@ -44,7 +44,7 @@
   	  	<tr style="background-color:#e8e8e8;">
   	  		<td><?php echo $n; ?></td>
           <td><a href="index.php?op=publicacion&idP=<?php echo $tuplaProds['idProducto'];?>"><?php echo utf8_encode($tuplaProds['nombre']); ?></a></td>
-          <td><?php echo utf8_encode($tuplaProds['descripcionCorta']);?></td>
+          <td class="puntos"><?php echo utf8_encode($tuplaProds['descripcionCorta']);?></td>
           <td><?php echo $tuplaProds['visitas'];?></td>
           <td><?php echo $tuplaProds['fecha_ini'];?></td>
           <td><?php echo $tuplaProds['fecha_fin'];?></td>

@@ -50,6 +50,7 @@ if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") { // Para ent
       </form><!-- End Form-->
   </div>
   </div>
+
 <?php 
 }
 else{

@@ -5,6 +5,7 @@ session_start();
 
 if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online" && $_SESSION['tipo']=="admin") { // Para entrar aca hay que iniciar session
 
+
 //errors
 $errorEdit = 'vacio';
 $errorAlta = 'vacio';

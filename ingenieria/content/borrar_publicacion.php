@@ -68,6 +68,7 @@
       $queryBajaPro = "UPDATE productos SET estado = '$newEstado' WHERE idProducto = '".$_POST['idPro']."' AND estado = '$oldEstado' ";
       mysqli_query($link,$queryBajaPro);
       header("Location: ../index.php");
+
     }else{ ?>
       <script type="text/javascript">
         alert("La publicacion tiene preguntas u ofertas; no es posible eliminarla. ");
@@ -76,4 +77,5 @@
     <?php
     }
   } */
+
 ?>
