@@ -68,7 +68,7 @@ function justNumbers(e) {
 			mysqli_query($link,$queryModOfe);
 			header("Location: ../index.php?op=publicacion&idP=".$_SESSION['prod']);
 		}else{ ?>
-      		<script type="text/javascript">window.location="index.php"</script>
+      		<script type="text/javascript">window.location="../index.php"</script>
     	<?php
 		}
 	}

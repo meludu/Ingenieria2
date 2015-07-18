@@ -8,6 +8,13 @@
 		case 'ganancias':
 			$content = '/../content/ganancias.php';
 			break;
+
+		case 'registroUsuario':
+			$content = '/../content/verUsuarios.php';
+			break;
+		case 'registroSubastas':
+			$content = '/../content/verSubastas.php';
+			break;
 		default:
 			$content = '/../content/categorias.php';
 			break;

@@ -2,7 +2,7 @@
 	session_start();
 	if ($_SESSION['estado'] == "online") {
 		$id_user = $_SESSION['id'];
-		$queryProductos = 'SELECT idProducto, nombre, descripcionCorta, visitas, fecha_ini, fecha_fin, idGanador FROM productos WHERE idUsuario = '.$id_user;
+		$queryProductos = "SELECT idProducto, nombre, descripcionCorta, visitas, fecha_ini, fecha_fin, idGanador FROM productos WHERE idUsuario = '".$id_user."' ORDER BY fecha_fin DESC";
 		$result = mysqli_query($link,$queryProductos);
 		$cantP = mysqli_num_rows($result);
 		$n = 1;
@@ -32,7 +32,7 @@
   		<thead>
   			<th>#</th>
         <th>Producto</th>
-        <th><i class="fa fa-info"></i></th>
+        <th><i class="fa fa-info"></i> Descripci&oacute;n</th>
         <th><i class="fa fa-eye"></i></th>
         <th><i class="fa fa-calendar"></i> Inicio</th>
         <th><i class="fa fa-calendar"></i> Fin</th>
@@ -61,7 +61,7 @@
         </tr>
         <tr>
           <?php
-          $queryOferta = 'SELECT o.oferta AS oferta, o.idProducto AS idProducto, o.precio AS precio, u.nombre AS nombre, u.apellido AS apellido, u.email AS email, u.idUsuario AS idUsuario FROM ofertas o 
+          $queryOferta = 'SELECT o.oferta AS oferta, o.idProducto AS idProducto, o.precio AS precio, u.nombre AS nombre, u.apellido AS apellido, u.email AS email, u.idUsuario AS idUsuario, o.fecha AS fechaOfer, o.hora AS horaOfer FROM ofertas o 
                           INNER JOIN usuarios u ON (o.idUsuario = u.idUsuario)
                           WHERE idProducto='.$tuplaProds['idProducto'];
           $ejec_ofer = mysqli_query($link, $queryOferta);
@@ -83,7 +83,8 @@
                     <th>Ofertador</th>
                     <th>Email</th>
                     <th>Necesidad</th>
-                    <th>Monto a pagar</th>
+                    <th><i class="fa fa-calendar"></i></th>
+                    <th><i class="fa fa-clock-o"></i></th>
                     <th></th>
                   </thead>
                   <tbody style="background-color: #e8e8e8;">

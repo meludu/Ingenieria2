@@ -48,11 +48,11 @@
 
         if (isset($_GET['clave']) && $_GET['clave'] != ""){
             $baseurl = "index.php?clave=" . $_GET['clave'] . "&";
-            $queryPro = "SELECT * FROM productos WHERE  nombre LIKE '%$palabra%'or descripcionCorta like'%$palabra%' ORDER BY $orden $tipoOrden";
+            $queryPro = "SELECT * FROM productos WHERE estado = '0' AND (nombre LIKE '%$palabra%'or descripcionCorta like'%$palabra%') ORDER BY $orden $tipoOrden";
         }
         else{
             $baseurl = "index.php?";
-            $queryPro = "SELECT idProducto, nombre, descripcionCorta, visitas, fecha_fin FROM productos ORDER BY $orden $tipoOrden";
+            $queryPro = "SELECT idProducto, nombre, descripcionCorta, visitas, fecha_fin FROM productos WHERE estado = '0' ORDER BY $orden $tipoOrden";
         }
                         
     ?>
@@ -76,7 +76,8 @@
                 <?php
                 if(!isset($_GET['clave'])){
 
-                    $queryDestacados = "SELECT p.idProducto, p.portada, p.tipoPortada, COUNT(o.idOferta) AS cantidad FROM ofertas o INNER JOIN productos p ON(o.idProducto = p.idProducto) GROUP BY p.idProducto, p.portada, p.tipoPortada ORDER BY cantidad DESC LIMIT 3";   
+                    $queryDestacados = "SELECT p.idProducto, p.portada, p.tipoPortada, COUNT(o.idOferta) AS cantidad FROM ofertas o INNER JOIN productos p ON(o.idProducto = p.idProducto) WHERE p.estado = '0' GROUP BY p.idProducto, p.portada, p.tipoPortada ORDER BY cantidad DESC LIMIT 3";
+
                     $resDestacados = mysqli_query($link,$queryDestacados);
 
                 ?>

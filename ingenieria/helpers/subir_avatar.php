@@ -7,6 +7,7 @@
 	echo $_FILE['avatar']['size'];   	 // tamaño.
 	echo $_SERVER["PHP_SELF"];*/
 
+	/*
 	if ( !empty($_POST['nombre']) && !empty($_POST['apellido'])) {
 		if ( !isset($_FILES["avatar"]) || $_FILES["avatar"]["error"] > 0){
 			echo "ha ocurrido un error";
@@ -43,5 +44,15 @@
 		}
 	}else{
 		echo "Enviaste campos vacios... ";
-	}
+	}*/
+
+
+	if ( !empty($_POST['nombre']) && !empty($_POST['apellido']) && !empty($_POST['sexo']) && !empty($_POST['fecha'])) {
+		$resultado = mysqli_query($link,"UPDATE usuarios SET nombre = '".$_POST['nombre']."' , apellido = '".$_POST['apellido']."', sexo = '".$_POST['sexo']."', fecha_nac = '".$_POST['fecha']."' WHERE idUsuario = '".$_SESSION['id']."' ");
+		if ($resultado){  // Se guardo todo perfectamente!
+			header("Location: ../?op=cuenta");	//Estaria bueno agregar un mensaje de exito!
+		}else{ // Error al copiar el archivo
+			echo "ocurrio un error al copiar el archivo.";
+		}
+	}	
 ?>

@@ -42,11 +42,17 @@
 		case 'misProds':
 			$content = 'content/mis_productos.php';
 			break;
+		case 'misOfer':
+			$content = 'content/mis_ofertas.php';
+			break;
 		case 'subastas': //Si el usuario es admin - desp pasarlo a handler admin
 			$content = 'content/subastas.php';
 			break;
 		case 'editarPubl':
 			$content = 'content/editar_publicacion.php';
+			break;
+		case 'faq':
+			$content = 'content/faq.php';
 			break;
 		default:
 			$content = 'content/home.php';

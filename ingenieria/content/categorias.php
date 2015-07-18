@@ -3,7 +3,9 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 session_start();
 
 
-if ($_SESSION['estado'] == "online") { // Para entrar aca hay que iniciar session
+if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online" && $_SESSION['tipo']=="admin") { // Para entrar aca hay que iniciar session
+
+
 
 //errors
 $errorEdit = 'vacio';
