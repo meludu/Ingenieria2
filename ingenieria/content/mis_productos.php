@@ -251,8 +251,9 @@
           ofertaMonto: monto,
           necesidadUser: necesidad
       },function(response){
-        window.location='index.php?op=misProds';
         console.log('success post');
+        window.location='index.php?op=misProds';
+        
       });
     });
   </script> 

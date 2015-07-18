@@ -29,17 +29,21 @@ if(isset($_POST['idGanador'])){
 			$resHoraAct = mysqli_query($link,$queryHoraAct);
 			$horaAct = mysqli_fetch_array($resHoraAct);
 
-			$queryInfoVen = "SELECT p.nombre AS nombre, u.correo AS correo FROM productos p INNER JOIN usuarios u ON(p.idUsuario = u.idUsuario) WHERE idProducto = '".$id_producto."' ";
+			$queryInfoVen = "SELECT p.nombre AS nombre, u.email AS correo FROM productos p INNER JOIN usuarios u ON(p.idUsuario = u.idUsuario) WHERE idProducto = '".$id_producto."' ";
+
 			$resInfoVen = mysqli_query($link,$queryInfoVen);
 			$tuplaInfoVen = mysqli_fetch_array($resInfoVen);
 
-			$msjNoti = 'Fuiste elegido como ganador en "'.$resInfoVen['nombre'].'", ponte en contacto con el vendedor ('.$resInfoVen['correo'].')';
-			$altaGanadorNoti = "INSERT INTO notificaciones (mensaje, estado, idEmisor, idReceptor, idProducto, fecha, hora) VALUES ('".$msjNoti."', '1', '".$_SESSION['id']."', '".$id_ganador."', '".$id_producto."', '".$fechaActual[0]."', '".$horaAct[0]."')";
-			if (mysqli_query($link,$altaGanadorNoti)) {
-				?><script>alert("entroooo");</script> <?php
-			}else{
-				?><script>alert("no");</script> <?php
-			}
+			//session_start();
+			$nomNot = $tuplaInfoVen['nombre'];
+			$correoNot = $tuplaInfoVen['correo'];
+			$msjNoti = "Fuiste elegido como ganador en ".$nomNot.", comunicate con el vendedor ".$correoNot;
+			$altaGanadorNoti = "INSERT INTO notificaciones (mensaje, estado, idEmisor, idReceptor, idProducto, fecha, hora) 
+								VALUES ('".$msjNoti."', '1', '".$resul['idUsuario']."', '".$id_ganador."', '".$id_producto."', '".$fechaActual[0]."', '".$horaAct[0]."')";
+
+			
+			$a= mysqli_query($link,$altaGanadorNoti);
+			print_r($a);
 		}
 	}
 		
