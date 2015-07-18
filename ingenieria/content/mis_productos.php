@@ -52,7 +52,7 @@
   	  		<td><?php echo $n; ?></td>
           <td>
           <?php
-          if ((interval_date($fechaActual[0], $tuplaProds['fecha_fin']) !== 'Publicaci&oacute;n finalizada.') || ($tuplaProds['estado'] == 0)){
+          if ((interval_date($fechaActual[0], $tuplaProds['fecha_fin']) !== 'Publicaci&oacute;n finalizada.') && ($tuplaProds['estado'] == 0)){
             ?>
              <a href="index.php?op=publicacion&idP=<?php echo $tuplaProds['idProducto'];?>"><?php echo utf8_encode($tuplaProds['nombre']); ?></a>
           <?php
@@ -68,7 +68,7 @@
           <td><?php echo $tuplaProds['fecha_fin'];?></td>
           <td>
           <?php
-          if (interval_date($fechaActual[0], $tuplaProds['fecha_fin']) === 'Publicaci&oacute;n finalizada.') {
+          if (interval_date($fechaActual[0], $tuplaProds['fecha_fin']) === 'Publicaci&oacute;n finalizada.' || ($tuplaProds['estado'] == 1)) {
             if ($cantOfertas1[0] == 0){
               echo "<strong style='color:red;'>FINALIZADA</strong>";
             }
