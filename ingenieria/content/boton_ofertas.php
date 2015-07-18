@@ -31,7 +31,7 @@ function justNumbers(e) {
             <label for="message-text" class="control-label">Necesidad:</label>
             <textarea class="form-control" data-parsley-trigger="change" onKeyDown="contador(this.form.texto,this.form.remLen,255);" onKeyUp="contador(this.form.texto,this.form.remLen,255);" style="resize:none;" name="texto" rows="4" cols="112" required></textarea>
           </div>
-          <br>
+          <input type="text" style="border:none; background-color:transparent;" name="remLen" value="255" disabled readonly>
           <div class="modal-footer">
             <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cerrar">
             <input type="submit" class="btn btn-success" value="Ofertar" name="btn_subir">
@@ -44,6 +44,8 @@ function justNumbers(e) {
 
 <?php
   // Se se manda la oferta
+  if (isset($_POST['btn_subir'])) {
+
     if (!empty($_POST['precioEntero']) && !empty($_POST['precioDecimal']) && !empty($_POST['texto'])) {
       session_start();
       include("../connect/conexion.php");
@@ -63,7 +65,6 @@ function justNumbers(e) {
       $horaAct = mysqli_fetch_array($resHoraAct);
 
       // Cargo la nueva oferta en la BD
-
       $queryOferta = "INSERT INTO ofertas (oferta, idUsuario, idProducto, precio, fecha, hora) VALUES ('".$_POST['texto']."', '".$_SESSION['id']."', '".$_SESSION['prod']."', '".$precioTotal."', '".$fechaAct[0]."', '".$horaAct[0]."')";
 
       if (mysqli_query($link,$queryOferta)) {
@@ -77,4 +78,5 @@ function justNumbers(e) {
       <script type="text/javascript">window.location="index.php"</script>
     <?php
     }
+  }
 ?>
