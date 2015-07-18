@@ -2,7 +2,7 @@
 	session_start();
 	if ($_SESSION['estado'] == "online") {
 		$id_user = $_SESSION['id'];
-		$queryProductos = "SELECT idProducto, nombre, descripcionCorta, visitas, fecha_ini, fecha_fin, idGanador FROM productos WHERE idUsuario = '".$id_user."' ORDER BY fecha_fin DESC";
+		$queryProductos = "SELECT idProducto, nombre, descripcionCorta, visitas, fecha_ini, fecha_fin, idGanador, estado FROM productos WHERE idUsuario = '".$id_user."' ORDER BY fecha_fin DESC";
 		$result = mysqli_query($link,$queryProductos);
 		$cantP = mysqli_num_rows($result);
 		$n = 1;
@@ -52,7 +52,7 @@
   	  		<td><?php echo $n; ?></td>
           <td>
           <?php
-          if (interval_date($fechaActual[0], $tuplaProds['fecha_fin']) !== 'Publicaci&oacute;n finalizada.'){
+          if ((interval_date($fechaActual[0], $tuplaProds['fecha_fin']) !== 'Publicaci&oacute;n finalizada.') || ($tuplaProds['estado'] == 0)){
             ?>
              <a href="index.php?op=publicacion&idP=<?php echo $tuplaProds['idProducto'];?>"><?php echo utf8_encode($tuplaProds['nombre']); ?></a>
           <?php
