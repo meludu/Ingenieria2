@@ -42,30 +42,57 @@
       <tbody>
 	  <?php while ($tuplaProds = mysqli_fetch_array($result)) { ?>
   	  	<tr style="background-color:#e8e8e8;">
+          <?php
+          $queryCantOfertas1 = 'SELECT COUNT(*) FROM ofertas o 
+                          INNER JOIN usuarios u ON (o.idUsuario = u.idUsuario)
+                          WHERE idProducto='.$tuplaProds['idProducto'];
+          $ejec_cantOfer1 = mysqli_query($link, $queryCantOfertas1);
+          $cantOfertas1 = mysqli_fetch_array($ejec_cantOfer1);
+          ?>
   	  		<td><?php echo $n; ?></td>
-          <td><?php if ($tuplaProds['idGanador'] == 0){?>
-            <a id="linkProd<?php echo $tuplaProds['idProducto'];?>" href="index.php?op=publicacion&idP=<?php echo $tuplaProds['idProducto'];?>"><?php echo utf8_encode($tuplaProds['nombre']); ?></a><?php }else{echo utf8_encode($tuplaProds['nombre']);}?>
-            <span id="spanProd<?php echo $tuplaProds['idProducto'];?>" class='hidden'><?php echo utf8_encode($tuplaProds['nombre']);?></span>
+          <td>
+          <?php
+          if (interval_date($fechaActual[0], $tuplaProds['fecha_fin']) !== 'Publicaci&oacute;n finalizada.'){
+            ?>
+             <a href="index.php?op=publicacion&idP=<?php echo $tuplaProds['idProducto'];?>"><?php echo utf8_encode($tuplaProds['nombre']); ?></a>
+          <?php
+          }
+          else {
+            echo utf8_encode($tuplaProds['nombre']);
+          }
+          ?>
           </td>
-          <td><?php echo utf8_encode($tuplaProds['descripcionCorta']);?></td>
+          <td class="puntos"><?php echo utf8_encode($tuplaProds['descripcionCorta']);?></td>
           <td><?php echo $tuplaProds['visitas'];?></td>
           <td><?php echo $tuplaProds['fecha_ini'];?></td>
           <td><?php echo $tuplaProds['fecha_fin'];?></td>
-          <td><?php if (interval_date($fechaActual[0], $tuplaProds['fecha_fin']) === 'Publicaci&oacute;n finalizada.') {
-           echo "<strong style='color:red;'>FINALIZADA</strong>";
-            }else{ 
-              echo "<strong style='color:green;'>ACTIVA</strong>"; } ?>
+          <td>
+          <?php
+          if (interval_date($fechaActual[0], $tuplaProds['fecha_fin']) === 'Publicaci&oacute;n finalizada.') {
+            if ($cantOfertas1[0] == 0){
+              echo "<strong style='color:red;'>FINALIZADA</strong>";
+            }
+            else {
+              if ($tuplaProds['idGanador'] == 0){
+                echo "<strong style='color:orange;'>FINALIZADA</strong>";
+              }
+              else{
+                echo "<strong style='color:red;'>FINALIZADA</strong>";
+              }
+            }
+          }else{ 
+            echo "<strong style='color:green;'>ACTIVA</strong>"; 
+          } ?>  
           </td>
-          <td> 
-
-          <button id="verOfertas_<?php echo $tuplaProds['idProducto'];?>" class="btn btn-primary <?php if ($tuplaProds['idGanador'] != 0) { echo 'hidden';}?>" type="button" data-toggle="collapse" data-target="#ofertasId<?php echo $tuplaProds['idProducto'];?>" aria-expanded="false" aria-controls="ofertasId<?php echo $tuplaProds['idProducto'];?>">
-          Ver Ofertas
-          </button>
-          <!-- Ver ganador una vez que fue el elegido el usuario ofertador determinado -->
-          <button id="verGanador_<?php echo $tuplaProds['idProducto'];?>" class="btn btn-success <?php if ($tuplaProds['idGanador'] == 0) { echo 'hidden';}?>" type="button" data-toggle="collapse" data-target="#ganadorId<?php echo $tuplaProds['idProducto'];?>" aria-expanded="false" aria-controls="#ganadorId<?php echo $tuplaProds['idProducto'];?>">
+          <td>
+          <!-- Boton ver ofertas--> 
+          <a id="verOfertas_<?php echo $tuplaProds['idProducto'];?>" class="btn btn-primary <?php if ($tuplaProds['idGanador'] != 0) { echo 'hidden';}?>"  role="button" data-toggle="collapse" href="#ofertasId<?php echo $tuplaProds['idProducto'];?>" aria-expanded="false" aria-controls="ofertasId<?php echo $tuplaProds['idProducto'];?>">
+            Ver Ofertas
+          </a>
+          <!-- Boton ver ganador-->
+          <a id="verGanador_<?php echo $tuplaProds['idProducto'];?>" class="btn btn-success <?php if ($tuplaProds['idGanador'] == 0) { echo 'hidden';}?>"  role="button" data-toggle="collapse" href="#ganadorId<?php echo $tuplaProds['idProducto'];?>" aria-expanded="false" aria-controls="ganadorId<?php echo $tuplaProds['idProducto'];?>">
             Ver Ganador
-          </button>
-          <!-- End Boton Ver ganador-->
+          </a>          
           </td>
         </tr>
         <tr>
@@ -103,16 +130,15 @@
                         <tr class="radius-ultimo-hijo">
                           <td><?php echo utf8_encode($result_ofer['nombre'])." ".utf8_encode($result_ofer['apellido']);?></td>
                           <td><?php echo $result_ofer['email'];?></td>
-                          <td><?php echo utf8_encode($result_ofer['oferta']);?></td>
+                          <td class="puntos"><?php echo utf8_encode($result_ofer['oferta']);?></td>
                           <td>
                             <?php
                             $queryGanador = 'SELECT idGanador FROM productos WHERE idProducto='.$result_ofer['idProducto'];
                             $ejec_ganad = mysqli_query($link, $queryGanador);
-                            //$tuplaGanador = mysqli_fetch_array($ejec_ganad);
                             while($tuplaGanador = mysqli_fetch_array($ejec_ganad)){
-                              if (($tuplaGanador['idGanador'] == 0) && (interval_date($fechaActual[0], $tuplaProds['fecha_fin']) === 'Publicaci&oacute;n finalizada.')){
+                              if (($tuplaGanador['idGanador'] == 0) && ($fechaActual[0] > $tuplaProds['fecha_fin'])){
                                 ?>
-                                <a type="button" data="<?php echo $tuplaProds['idProducto'];?>" id="ganador_<?php echo $result_ofer['idUsuario'];?>" class="btn btn-primary elegirGanador" data-toggle='modal' data-target='.modalElegirGanador' >Elegir como ganador</a>     
+                                <a type="button" data-prod="<?php echo $tuplaProds['idProducto'];?>" data-necesidad="<?php echo $result_ofer['oferta'];?>" data-monto="<?php echo $result_ofer['precio']?>" id="ganador_<?php echo $result_ofer['idUsuario'];?>" class="btn btn-primary elegirGanador" data-toggle='modal' data-target='.modalElegirGanador' >Elegir como ganador</a>     
                               <?php
                               }
                             }
@@ -159,7 +185,7 @@
                           <tr class="radius-ultimo-hijo">
                             <td><?php echo utf8_encode($result_oferta['nombre'])." ".utf8_encode($result_oferta['apellido']);?></td>
                             <td><?php echo $result_oferta['email'];?></td>
-                            <td><?php echo utf8_encode($result_oferta['oferta']);?></td>
+                            <td class="puntos"><?php echo utf8_encode($result_oferta['oferta']);?></td>
                             <td><?php echo "$".$result_oferta['precio'];?></td>
                             <td>
                             </td>
@@ -185,20 +211,15 @@
 </div>
 <script>
   var idGano;
-  var botonVerGanador;
-  var botonVerOfertas;
-  var ofertadores;
-  var linkDeProdAlElegirGanador;
-  var spanLinkProd;
-   $(".elegirGanador").click(function(e) {
+  var idProd;
+  var montoOferta;
+  var necesidadProducto;
+   $(".elegirGanador").click(function() {
       var values = $(this).attr('id').split("_");
       window.idGano = parseInt(values[1]);
-      var valueIdProducto = $(this).attr('data');
-      window.botonVerGanador = '#verGanador_'+valueIdProducto,
-      window.botonVerOfertas = '#verOfertas_'+valueIdProducto;
-      window.ofertadores = '#ofertadoresParaProducto'+valueIdProducto;
-      window.linkDeProdAlElegirGanador = '#linkProd'+valueIdProducto;
-      window.spanLinkProd = '#spanProd'+valueIdProducto;
+      window.idProd = $(this).attr('data-prod');
+      window.montoOferta = $(this).attr('data-monto');
+      window.necesidadProducto = $(this).attr('data-necesidad');
     }); 
 </script>
 
@@ -218,19 +239,19 @@
   </div>
   <!-- END MODAL-->
   <script>
-   $("#buttonSi").click(function(e) {
-      var botonVerGanador = window.botonVerGanador,
-          botonVerOfertas = window.botonVerOfertas,
-          spanProd = window.spanLinkProd,
-          linkProdGano = window.linkDeProdAlElegirGanador,
-          idGano = window.idGano;
+   $("#buttonSi").click(function() {
+      var idProduc = window.idProd,
+          idGano = window.idGano,
+          monto = window.montoOferta,
+          necesidad = window.necesidadProducto;
 
-      $.post('content/elegirGanador.php',{idGanador:idGano},function(response){
-        $(linkProdGano).remove();
-        $(spanProd).removeClass('hidden');
-        $(botonVerOfertas).addClass('hidden');
-        $(botonVerGanador).removeClass('hidden');
-        $(ofertadores).addClass('hidden');
+      $.post('content/elegirGanador.php',{
+          idGanador:idGano, 
+          idProducto:idProduc, 
+          ofertaMonto: monto,
+          necesidadUser: necesidad
+      },function(response){
+        window.location='index.php?op=misProds';
         console.log('success post');
       });
     });
