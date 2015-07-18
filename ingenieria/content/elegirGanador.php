@@ -1,27 +1,30 @@
 <?php
 
 if(isset($_POST['idGanador'])){
-	//print_r($_POST['idGanador']);
 	$id_ganador = $_POST['idGanador'];
+	$id_producto = $_POST['idProducto'];
+	$necesidad = $_POST['necesidadUser'];
+	$monto = $_POST['ofertaMonto'];
+	
 	include_once('../connect/conexion.php');
-	$queryElegir = 'SELECT u.nombre AS nombre, u.apellido AS apellido, u.idUsuario AS idUsuario, o.idProducto idProducto FROM usuarios u 
-					INNER JOIN ofertas o ON (o.idUsuario=u.idUsuario)
-					INNER JOIN productos p ON (p.idProducto=o.idProducto)
-					WHERE o.idUsuario='.$id_ganador;
-	$ejec_query = mysqli_query($link, $queryElegir);
 
-	if ($tupla = mysqli_fetch_array($ejec_query)){
-		$id_producto = $tupla['idProducto'];
-		$agregarIdGanador = "UPDATE productos SET idGanador='$id_ganador' WHERE idProducto='$id_producto'";
-			//echo "$sql";
-		if($res = mysqli_query($link, $agregarIdGanador)){
-		?>	
-		<button type="button" class="btn btn-primary" onclick="location.href='index.php?op=misProds'" data-dismiss="modal">Si</button>
-		<?php
+	//Setea idGanador de producto
+	$agregarIdGanador = "UPDATE productos SET idGanador='$id_ganador' WHERE idProducto='$id_producto'";
+	if ($res = mysqli_query($link, $agregarIdGanador)){
+		//fecha actual
+		$consultaFecha = "SELECT CURDATE()"; 
+        $resFecha = mysqli_query($link,$consultaFecha); 
+        $fechaActual = mysqli_fetch_array($resFecha);
+        //para saber los datos del vendedor
+		$traerVendedor = 'SELECT idUsuario, nombre FROM productos WHERE idProducto='.$id_producto;
+		$query_exec = mysqli_query($link, $traerVendedor);
+		if ($resul = mysqli_fetch_array($query_exec)){
+			$queryAgregarGanancia = "INSERT INTO ganancias (idVendedor, idGanador, nombre, necesidad, monto, fecha) 
+			VALUES ('".$resul['idUsuario']."','".$id_ganador."','".$resul['nombre']."','".$necesidad."','".$monto."','".$fechaActual[0]."') ";
+			$resultado = mysqli_query($link, $queryAgregarGanancia);
 		}
-		?>
-		
-	<?php
 	}
+		
+	
 }
 ?>
