@@ -43,8 +43,9 @@ if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") { // Para ent
           </div> <!-- End Form-->
         </div> <!-- End Form-->
 
-
-        <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+<script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+<!-- polyfiller file to detect and load polyfills -->
+          <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
           <script>
           webshims.setOptions('waitReady', false);
           webshims.setOptions('forms-ext', {types: 'date'});
@@ -58,13 +59,7 @@ if (isset($_SESSION['estado']) && $_SESSION['estado'] == "online") { // Para ent
         </div> <!-- End Form-->
 
 
-        <div class="form-group">
-          <label for="exampleInputFile" class="col-md-4 control-label"><i class="fa fa-camera fa-2x"></i></label>
-            <div class="col-md-4">
-              <input name="avatar" type="file" id="disabledInput" class="file-control" disabled>
-              <p class="help-block">Subir foto.</p>
-            </div>
-        </div>
+      
         <div class="form-group">
           <div class="col-md-offset-4">
             <button type="submit" class="btn btn-success">Actualizar</button>
