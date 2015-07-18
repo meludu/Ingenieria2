@@ -22,6 +22,24 @@ if(isset($_POST['idGanador'])){
 			$queryAgregarGanancia = "INSERT INTO ganancias (idVendedor, idGanador, nombre, necesidad, monto, fecha) 
 			VALUES ('".$resul['idUsuario']."','".$id_ganador."','".$resul['nombre']."','".$necesidad."','".$monto."','".$fechaActual[0]."') ";
 			$resultado = mysqli_query($link, $queryAgregarGanancia);
+
+			// Agrego la notificacion 
+			// Traigo la hora actual de la BD.  
+			$queryHoraAct = "SELECT CURTIME()";
+			$resHoraAct = mysqli_query($link,$queryHoraAct);
+			$horaAct = mysqli_fetch_array($resHoraAct);
+
+			$queryInfoVen = "SELECT p.nombre AS nombre, u.correo AS correo FROM productos p INNER JOIN usuarios u ON(p.idUsuario = u.idUsuario) WHERE idProducto = '".$id_producto."' ";
+			$resInfoVen = mysqli_query($link,$queryInfoVen);
+			$tuplaInfoVen = mysqli_fetch_array($resInfoVen);
+
+			$msjNoti = 'Fuiste elegido como ganador en "'.$resInfoVen['nombre'].'", ponte en contacto con el vendedor ('.$resInfoVen['correo'].')';
+			$altaGanadorNoti = "INSERT INTO notificaciones (mensaje, estado, idEmisor, idReceptor, idProducto, fecha, hora) VALUES ('".$msjNoti."', '1', '".$_SESSION['id']."', '".$id_ganador."', '".$id_producto."', '".$fechaActual[0]."', '".$horaAct[0]."')";
+			if (mysqli_query($link,$altaGanadorNoti)) {
+				?><script>alert("entroooo");</script> <?php
+			}else{
+				?><script>alert("no");</script> <?php
+			}
 		}
 	}
 		
